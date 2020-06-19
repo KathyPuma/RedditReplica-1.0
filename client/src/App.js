@@ -1,22 +1,30 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Home from './Components/Home'
+import Navbar from './Components/Navbar'
+import Community from './Components/Community'
+import Profile from './Components/Profile'
+import Comments from './Components/Comments'
+import Posts from './Components/Posts'
+import Downvoted from './Components/Downvoted'
+import Upvoted from './Components/Upvoted'
+
+import "./App.css";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Switch>
+      <Route path="/r/:community/" component={Community} />
+        <Route path="/user/:username/" component={Profile} />
+        <Route path="/user/:username/comments/" component={Comments} />
+        <Route path="/user/:username/posts/" component={Posts} />
+        <Route path="/user/:username/downvoted/" component={Downvoted} />
+        <Route path="/user/:username/upvoted" component={Upvoted} />
+        <Route exact path="/" component={Home} />
+      </Switch>
     </div>
   );
 }
