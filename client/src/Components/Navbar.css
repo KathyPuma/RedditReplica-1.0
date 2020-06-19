@@ -11,3 +11,12 @@
     flex-grow: 1;
     padding: 0 20px;
 }
+.search{
+    width: 10%;
+    border-radius: 15px;
+    border: 1px #000 solid;
+    padding: 5px 5px 5px 25px;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}

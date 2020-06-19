@@ -10,7 +10,7 @@ function Navbar() {
         <div className="navbar-stage"  >
             <h1 className="youtube">reddit</h1>
 
-
+            <input type="text" className = "search" placeholder="Search.."/>
             <button>LOG IN</button>
             <button>SIGN UP</button>
 
