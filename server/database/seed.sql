@@ -7,35 +7,49 @@ CREATE DATABASE reddit_clone;
 
 CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
-   username VARCHAR NOT NULL,
+   username VARCHAR UNIQUE NOT NULL,
+   email  VARCHAR UNIQUE NOT NULL,
    password VARCHAR NOT NULL,
-   avatar_url TEXT DEFAULT '',
+   avatar_url TEXT DEFAULT ''
 );
 
+CREATE TABLE subreddit (
+    subreddit_id SERIAL PRIMARY KEY,
+    subreddit_name VARCHAR NOT NULL
+);
 
-CREATE TABLE posts(
-    post_id  SERIAL PRIMARY KEY,
-    poster_id  INT REFERENCES users(user_id) ,
+CREATE TABLE subreddit_posts(
+    subreddit_posts_id SERIAL PRIMARY KEY,
+    subreddit_id  INT REFERENCES subreddit(subreddit_id),
+    poster_id INT REFERENCES users(user_id),
+    title TEXT,
+    body TEXT,
+    photo_url VARCHAR DEFAULT '',
     time_post text DEFAULT NOW()
-
 );
-
 
 CREATE TABLE comments(
    comment_id SERIAL PRIMARY KEY,
+    subreddit_posts INT REFERENCES subreddit_posts(subreddit_posts_id),
    commenter_id INT REFERENCES users(user_id),
-   post_id INT REFERENCES posts(post_id),
    body TEXT,
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 
-CREATE TABLE photos(
-    photo_id SERIAL PRIMARY KEY,
-    photo_url TEXT NOT NULL,
-    user_id INT REFERENCES users(user_id) 
+CREATE TABLE comment_replies(
+   comment_replies_id SERIAL PRIMARY KEY,
+   comment_id INT REFERENCES comments(comment_id),
+   comment_responder_id INT REFERENCES users(user_id),
+   body TEXT,
+   comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE comumunity (
+    comumunity_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
+    subreddit_id  INT REFERENCES subreddit(subreddit_id)
+);
 
 -- CREATE TABLE votes(
 --     vote_id SERIAL PRIMARY KEY,
@@ -58,3 +72,84 @@ CREATE TABLE photos(
 --    message_id SERIAL PRIMARY KEY,
   
 -- );
+
+INSERT INTO users
+    (username, email, password,  avatar_url)
+VALUES
+('Ana','ana@gmail.org', 'abc123', 'img'),
+('No_Information5946','brandon@gmail.org' ,'abc123', 'img'),
+('Witty-Media-6475','James@gmail.org' ,'abc123', 'img'),
+('randomUser1','randomUser1@gmail.org' ,'abc123', 'img'),
+('Mommy-blogger','mommyOfTwo@gmail.org' ,'abc123', 'img');
+
+
+INSERT INTO subreddit
+    (subreddit_name)
+VALUES
+('wholesomememes'),
+('Movies'),
+('explainlikeimfive'),
+('apple'),
+('AskReddit');
+
+
+INSERT INTO comumunity
+    (user_id, subreddit_id)
+VALUES
+(1,1),
+(1,2),
+(2,4),
+(2,5);
+
+
+INSERT INTO subreddit_posts
+    (subreddit_id, poster_id, title,  body, photo_url)
+VALUES
+(1,1, 'Sup little person?', NULL, 'https://i.redd.it/q4b36002aa651.jpg' ),
+(1,2, 'Check check and Happy',NULL, 'https://i.redd.it/5wojr10qef651.jpg'),
+(2,4, 'Jurassic Park Roars To No. 1 Again, 27 Years Later Box Office', NULL, NULL ),
+(3,3, 'ELI5: how do show/ movie directors get shots and scenes of totally abandoned cities?', NULL, NULL),
+(3,4,'ELI5: Why are other mammals born with the ability to swim, but humans have to learn?', NULL, NULL),
+(4,1, 'Phone Calls Will Finally Stop Taking Up the Entire Screen in iOS 14', NULL, NULL),
+(5,5, 'What fictional character were you afraid the most when you were kid', NULL, NULL),
+(5,2, 'To the people who pour the milk before adding cereal, why?', NULL, NULL);
+
+
+INSERT INTO comments
+    (subreddit_posts, commenter_id , body)
+VALUES
+(1,4, 'Fun fact: Talking to babies and toddlers as though what they''re saying makes perfect sense is actually helpful, because it helps them learn about how people actually have conversations and talk to each other! Plus, it''s inherently funny to pretend that the literal nonsense children say sometimes is sensible.'),
+(1,5, 'Glad to know this validates all of my gibberish conversations with my toddler.'),
+(2,1,'Aren''t grandma''s the best!'),
+(2,3, 'I feel the same'),
+(2,5,'My mom loves to spoil my kids.'),
+(3,5,'It came out when I was 4 years old. Its been one of my favorite movie ever since.'),
+(4,4,'They''re on a movie set, and the rest of the city is faked with CGI.'),
+(5,4,'Humans do it instinctively as well. Put a newborn baby into a pool, it''ll swim happily. We just spend years not doing it so we forget how and have to relearn it.'),
+(6,1,'It''s about time!'),
+(6,3,'Greatest thing about this is now I can ignore someone without them knowing I''m ignoring them while continuing to use my phone'),
+(7,2,'Freddy Krueger! I get scared to fall asleep if I were to think about him before going to bed.'),
+(7,5,'Chucky still gives me nightmares to this day'),
+(8,2,'I don''t like when the cereal gets soggy quickly'),
+(8,3,'What animal pours cereal before milk?');
+
+
+
+
+INSERT INTO comment_replies
+    (comment_id, comment_responder_id, body)
+VALUES
+(1,1,'I do this with my sister and it freaks out my mom.'),
+(10,3,'Relatable'),
+(10,5,'Now I can ignore my mother-in-law and use my phone at the same time.'),
+(14,2,'Me!');
+
+
+
+SELECT * FROM users;
+SELECT * FROM subreddit;
+SELECT * FROM comumunity                
+SELECT * FROM subreddit_posts;
+SELECT * FROM comments;
+SELECT * FROM comment_replies;
+
