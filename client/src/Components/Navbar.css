@@ -10,13 +10,79 @@
     border-bottom: 1px solid #edeff1;
     flex-grow: 1;
     padding: 0 20px;
+    align-items: center;
+    display: inline-flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
 }
+
 .search{
     width: 10%;
-    border-radius: 15px;
-    border: 1px #000 solid;
-    padding: 5px 5px 5px 25px;
-    top: 0;
-    left: 0;
-    z-index: 5;
+     /* font-family: 'Helvetica', faSearch, sans-serif; */
+    z-index: 11;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #edeff1;
+    border-radius: 4px;
+    border: 1px solid #edeff1;
+    box-shadow: none;
+    color: #edeff1;
+    display: block;
+    height: 36px;
+    outline: none;
+    padding: 0 16px 0 40px;
+    width: 100%;
+}
+
+.search:active{
+    border: 1px solid #33a8ff;
+}
+
+.reddit-logo{
+    color: black;
+    font-size: 32px;
+    padding: 8px 8px 8px 0;
+    width: 32px;
+}
+
+.reddit-link:link{
+    text-decoration: none;
+    display: inline-block;
+}
+    
+.reddit{
+    color: black;
+    margin-right: 20px;
+    width: auto;
+    height: 18px;
+    font: normal 1.25em  verdana, arial, helvetica, sans-serif;
+}
+
+.reddit-home{
+    display: flex;
+    align-items: center;
+}
+
+.dropDown-menu{
+    display:flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropDown-menu:hover, .dropDown-menu.focus{
+    outline: none;
+}
+
+
+.dropDown-userIcon, .dropDown-arrowIcon{
+    color:#bbbdbf
+}
+
+.dropDown-arrowIcon{
+    font-size: small;
 }
