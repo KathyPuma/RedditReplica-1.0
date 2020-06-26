@@ -16,15 +16,19 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Switch>
-      <Route path="/r/:community/" component={Community} />
-        <Route path="/user/:username/" component={Profile} />
-        <Route path="/user/:username/comments/" component={Comments} />
-        <Route path="/user/:username/posts/" component={Posts} />
-        <Route path="/user/:username/downvoted/" component={Downvoted} />
-        <Route path="/user/:username/upvoted" component={Upvoted} />
-        <Route exact path="/" component={Home} />
-      </Switch>
+
+      <div className="app-route">
+        <Switch>
+          <Route path="/r/:community/" component={Community} />
+          <Route path="/user/:username/" component={Profile} />
+          <Route path="/user/:username/comments/" component={Comments} />
+          <Route path="/user/:username/posts/" component={Posts} />
+          <Route path="/user/:username/downvoted/" component={Downvoted} />
+          <Route path="/user/:username/upvoted/" component={Upvoted} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </div>
+
     </div>
   );
 }
