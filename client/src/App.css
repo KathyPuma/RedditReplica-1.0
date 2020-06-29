@@ -1,8 +1,12 @@
+body{
+  background-color:  #DAE0E6;
+}
+
 .App {
   text-align: center;
   max-width: 100%;
-  background-color:  #DAE0E6;
 }
+
 @media (min-width: 640px){
   .App{
     padding: 20px 24px;
