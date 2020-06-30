@@ -11,8 +11,6 @@ function Community(props) {
         const handleAllSubReddits = async () => {
             const allSubreddits = await axios.get(`/subreddit/name/${props.match.params.community}`)
             setSubreddit(allSubreddits.data.payload)
-            console.log("allSubreddits.data.payload", allSubreddits.data.payload)
-
         }
         handleAllSubReddits()
     }, [])
