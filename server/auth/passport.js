@@ -3,38 +3,42 @@ const LocalStrategy = require('passport-local').Strategy;
 const { comparePasswords } = require('../auth/helpers');
 const usersQueries = require('../queries/users');
 
-passport.use(new LocalStrategy(async (username, password, done) => {
+
+passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, async (request, email, password, done) => {
+
   try {
-    const user = await usersQueries.getUserByUsername(username);
+    const user = await usersQueries.getUserByEmail(email);
+
     if (!user) {
-      return done(null, false)
+      return done(null, false);
     }
 
-    const passMatch = await comparePasswords(password, user.password);
+    const userPassword = user.password;
+    const passMatch = await comparePasswords(password, userPassword);
     if (!passMatch) {
       return done(null, false)
-    }
-    delete user.password;
+    };
+    delete userPassword;
     done(null, user);
-
-  } catch (err) {
-    done(err)
   }
-}))
+  catch (err) {
+    done(err);
+  }
+}));
 
 passport.serializeUser((user, done) => {
   done(null, user)
-})
+});
 
 passport.deserializeUser(async (user, done) => {
   try {
-    let retrievedUser = await usersQueries.getUserByUsername(user.username)
+    let retrievedUser = await usersQueries.getUserByEmail(user.email);
     delete retrievedUser.password;
     done(null, retrievedUser)
-
-  } catch (err) {
+  }
+  catch (err) {
     done(err, false)
   }
-})
+});
 
 module.exports = passport;
