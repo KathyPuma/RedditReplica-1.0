@@ -8,29 +8,30 @@ const getAllUsers = async () => {
 
 const addNewUser = async (userObj) => {
 	const newUserQuery = `
-		INSERT INTO users(username, password)
-			VALUES($/username/, $/password/)
-			RETURNING user_id, username
+		INSERT INTO users(username, email, password, avatar_url)
+			VALUES($/username/, $/email/ , $/password/ , $/avatar_url/ )
+			RETURNING *
 	`
 	const newUser = await db.one(newUserQuery, userObj)
 	return newUser;
 }
 
-const getUserByUsername = async (username) => {
-	const getUserQuery = 
-	`SELECT * 
+const getUserByEmail = async (email) => {
+    const getQuery = `
+	SELECT username,
+	email,
+	password,
+	avatar_url
 	FROM users
-	WHERE username = $/username/;
-	`;
-	return await await db.oneOrNone(getUserQuery, {username})
+    WHERE email = $/email/;
+    `;
+    return await db.oneOrNone(getQuery, { email });
+};
 
-
-
-}
 
 module.exports = {
 	getAllUsers,
 	addNewUser,
-	getUserByUsername
+	getUserByEmail
 }
 
