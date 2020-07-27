@@ -1,10 +1,10 @@
 const handleErrors = (res, err) => {
     console.log('ERROR: - ', err)
     if (err.code === "23505" && err.detail.includes("already exists")) {
-        console.log('Attempt to register a new user with a taken email')
+        console.log('Attempt to register a new user with a taken username')
         res.status(403).json({
           error: true,
-          message: 'Email already registered',
+          message: 'Username taken',
           payload: null,
         }) 
     } else if (err.message === 'No data returned from the query.') {
