@@ -1,25 +1,6 @@
 # Reddit Clone
 
-<!-- ## Live @ -->
-
 This Reddit Clone app is meant to replicate Reddit.
-
-
-## Wireframes
-![homeNotLoggedIn](./public/images/wireframes/homeNotLoggedIn.png)
-![homeLoggedIn](./public/images/wireframes/homeLoggedIn.png)
-![createSubredddit](./public/images/wireframes/subredditForm.png)
-![subreddit](./public/images/wireframes/communityPage.png)
-![postInSubredditForm](./public/images/wireframes/postInCommunity.png)
-
-
-
-<!-- ![langingpage](./public/images/landingpage.png)
-
-
-
-![Database Schema](./public/images/wireframes.md) -->
-
 
 ## Features
 
@@ -29,9 +10,6 @@ Users are able to:
 * Create new subreddit 
 * Create a new post on a subreddit
 * Upvote/Downvote on a post
-
-
-
 
 
 ## Technologies Used
@@ -44,10 +22,7 @@ Users are able to:
 * pg-promise
 * bcrypt
 
-
-
-
-##  Local Setup
+##  Setup
 
 You must have installed Node.js and PostgreSQL in your computer.
 You can check for these dependencies with node -v and psql -v. 
@@ -77,4 +52,17 @@ You can check for these dependencies with node -v and psql -v.
  
    npm start
  
-A new browser tab should have been opened and the App should be running. If that is not the case check the terminals output for errors, if you are unable to troubleshoot the problem, I would be happy to address issues so open one
+
+## Wireframes
+
+![homeNotLoggedIn](./public/images/wireframes/homeNotLoggedIn.png)
+![homeLoggedIn](./public/images/wireframes/homeLoggedIn.png)
+![createSubredddit](./public/images/wireframes/subredditForm.png)
+![subreddit](./public/images/wireframes/communityPage.png)
+![postInSubredditForm](./public/images/wireframes/postInCommunity.png)
+
+ ## Database Schema
+ 
+![Database Schema](./public/images/databaseSchema_reddit.png)
+
+
