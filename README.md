@@ -29,7 +29,7 @@ You can check for these dependencies with node -v and psql -v.
 
 + To run, first instantiate and seed the PostgresQL database from the root:
   ```
-  $ psql -f database/greenlist_registry_db.sql
+  $ psql -f database/seed.sql
   ```
 
 + Second, install and run the backend locally using npm:
@@ -46,7 +46,6 @@ You can check for these dependencies with node -v and psql -v.
   $ npm start
   ```
 
- 
 
 ## Wireframes
 
