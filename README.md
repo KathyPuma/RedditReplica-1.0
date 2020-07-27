@@ -7,9 +7,9 @@ This Reddit Clone app is meant to replicate Reddit.
 Users are able to:
 
 * Sign up and login in to an existing account.
-* Create new subreddit 
-* Create a new post on a subreddit
-* Upvote/Downvote on a post
+* Create a new subreddit.
+* Create a new post on a subreddit.
+* Upvote/Downvote on a post.
 
 
 ## Technologies Used
@@ -58,5 +58,3 @@ You can check for these dependencies with node -v and psql -v.
  ## Database Schema
 
 ![Database Schema](./public/images/databaseSchema_reddit.png)
-
-
