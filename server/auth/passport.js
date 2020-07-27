@@ -4,10 +4,9 @@ const { comparePasswords } = require('../auth/helpers');
 const usersQueries = require('../queries/users');
 
 
-passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, async (request, email, password, done) => {
-
+passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    const user = await usersQueries.getUserByEmail(email);
+    const user = await usersQueries.getUserByUserName(username);
 
     if (!user) {
       return done(null, false);
@@ -32,7 +31,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (user, done) => {
   try {
-    let retrievedUser = await usersQueries.getUserByEmail(user.email);
+    let retrievedUser = await usersQueries.getUserByUserName(user.username);
     delete retrievedUser.password;
     done(null, retrievedUser)
   }
