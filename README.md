@@ -49,11 +49,7 @@ You can check for these dependencies with node -v and psql -v.
 
 ## Wireframes
 
-![homeNotLoggedIn](./public/images/wireframes/homeNotLoggedIn.png)
-![homeLoggedIn](./public/images/wireframes/homeLoggedIn.png)
-![createSubredddit](./public/images/wireframes/subredditForm.png)
-![subreddit](./public/images/wireframes/communityPage.png)
-![postInSubredditForm](./public/images/wireframes/postInCommunity.png)
+[Wireframes PDF](./public/images/wireframes.pdf)
 
  ## Database Schema
 
