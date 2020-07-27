@@ -22,35 +22,30 @@ Users are able to:
 * pg-promise
 * bcrypt
 
-##  Setup
+##  Local Setup
 
 You must have installed Node.js and PostgreSQL in your computer.
 You can check for these dependencies with node -v and psql -v. 
 
-1. Clone this repo: 
-  
-   git clone git@github.com/KathyPuma/Clone_App.git
++ To run, first instantiate and seed the PostgresQL database from the root:
+  ```
+  $ psql -f database/greenlist_registry_db.sql
+  ```
 
-2. Install dependencies for the Node/Express Server (sever folder):
++ Second, install and run the backend locally using npm:
+  ```
+  $ cd server
+  $ npm install
+  $ npm run start:dev
+  ```
 
-   cd server && npm install
++ Lastly, install and run the frontend locally using npm:
+  ```
+  $ cd ../../client
+  $ npm install
+  $ npm start
+  ```
 
-3. Install dependencies the React App (client folder):
-
-   cd client && npm install
-
-4. Create database and seed sample data while being in the server directory with:
- 
-   psql -f .database/seed.sql
-   Make sure PostgreSQL is running!
-
-5. To launch the Node/Express server, inside the backend folder run:
- 
-   npm run start:dev
- 
-6. To launch the React App, inside the frontend folder, and preferably in another terminal window run:
- 
-   npm start
  
 
 ## Wireframes
@@ -62,7 +57,7 @@ You can check for these dependencies with node -v and psql -v.
 ![postInSubredditForm](./public/images/wireframes/postInCommunity.png)
 
  ## Database Schema
- 
+
 ![Database Schema](./public/images/databaseSchema_reddit.png)
 
 
