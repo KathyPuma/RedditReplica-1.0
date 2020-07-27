@@ -3,19 +3,18 @@ CREATE DATABASE reddit_clone;
 
 \c reddit_clone
 
-
-
 CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
    username VARCHAR UNIQUE NOT NULL,
-   email  VARCHAR UNIQUE NOT NULL,
+   email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
    avatar_url TEXT DEFAULT ''
 );
 
 CREATE TABLE subreddit (
     subreddit_id SERIAL PRIMARY KEY,
-    subreddit_name VARCHAR NOT NULL
+    subreddit_name VARCHAR NOT NULL, 
+    subreddit_description VARCHAR NOT NULL
 );
 
 CREATE TABLE subreddit_posts(
@@ -36,7 +35,6 @@ CREATE TABLE comments(
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE comment_replies(
    comment_replies_id SERIAL PRIMARY KEY,
    comment_id INT REFERENCES comments(comment_id),
@@ -51,32 +49,18 @@ CREATE TABLE comumunity (
     subreddit_id  INT REFERENCES subreddit(subreddit_id)
 );
 
--- CREATE TABLE votes(
---     vote_id SERIAL PRIMARY KEY,
+CREATE TABLE votes_posts(
+    votes_posts_id SERIAL PRIMARY KEY,
+    subreddit_posts_id INT REFERENCES subreddit_posts(subreddit_posts_id),
+    voter_id INT REFERENCES users(user_id),
+    votes INT 
+);
 
--- );
-
-
--- CREATE TABLE upvotes(
---    upvote_id SERIAL PRIMARY KEY,
- 
--- );
-
--- CREATE TABLE downvotes(
---    downvote_id SERIAL PRIMARY KEY,
-
--- );
-
-
--- CREATE TABLE messages(
---    message_id SERIAL PRIMARY KEY,
-  
--- );
 
 INSERT INTO users
     (username, email, password,  avatar_url)
 VALUES
-('Ana','ana@gmail.org', 'abc123', 'img'),
+('Ana','ana@gmail.com', 'abc123', 'img'),
 ('No_Information5946','brandon@gmail.org' ,'abc123', 'img'),
 ('Witty-Media-6475','James@gmail.org' ,'abc123', 'img'),
 ('randomUser1','randomUser1@gmail.org' ,'abc123', 'img'),
@@ -84,13 +68,14 @@ VALUES
 
 
 INSERT INTO subreddit
-    (subreddit_name)
+    (subreddit_name, subreddit_description )
 VALUES
-('wholesomememes'),
-('Movies'),
-('explainlikeimfive'),
-('apple'),
-('AskReddit');
+('wholesomememes', 'Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.'),
+('Movies', 'News & Discussion about Major Motion Pictures'),
+('explainlikeimfive', 'Explain Like I''m Five is the best forum and archive on the internet for layperson-friendly explanations. Don''t Panic!'),
+('apple', 'An unofficial community to discuss Apple devices and software, including news, rumors, opinions and analysis pertaining to the company located at One Apple Park Way.'),
+('AskReddit', 'r/AskReddit is the place to ask and answer thought-provoking questions.
+');
 
 
 INSERT INTO comumunity
@@ -115,6 +100,16 @@ VALUES
 (5,2, 'To the people who pour the milk before adding cereal, why?', NULL, NULL);
 
 
+INSERT INTO votes_posts
+    (subreddit_posts_id, voter_id,  votes)
+VALUES
+(1,1, 1),
+(1,2, 1),
+(1,3, 1),
+(1,4, 1),
+(2,4, 16);
+
+
 INSERT INTO comments
     (subreddit_posts, commenter_id , body)
 VALUES
@@ -134,8 +129,6 @@ VALUES
 (8,3,'What animal pours cereal before milk?');
 
 
-
-
 INSERT INTO comment_replies
     (comment_id, comment_responder_id, body)
 VALUES
@@ -150,6 +143,6 @@ SELECT * FROM users;
 SELECT * FROM subreddit;
 SELECT * FROM comumunity                
 SELECT * FROM subreddit_posts;
+SELECT * FROM votes_posts;
 SELECT * FROM comments;
 SELECT * FROM comment_replies;
-
