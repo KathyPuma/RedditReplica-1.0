@@ -11,15 +11,23 @@ router.post("/signup", async (req, res, next) => {
         const { username, email, password, avatar_url } = req.body
         const password_digest = await authHelpers.hashPassword(password)
         let newUser = await userQueries.addNewUser({ username: username, email: email, password: password_digest, avatar_url: avatar_url })
-        res.status(200).json({
-            payload: newUser,
-            message: "User successfully registered",
-            error: false
-        })
+
+
+        req.login(newUser, function (err) {
+            if (err) { return next(err); }
+            return res.json({
+                payload: newUser,
+                message: "User successfully registered and is logged in automatically",
+                error: false
+            })
+        });
+
     } catch (err) {
         handleErrors(res, err);
     }
 })
+
+
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
     try {
         res.status(200)
