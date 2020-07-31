@@ -12,7 +12,7 @@ export const navbarStyles = makeStyles((theme) => ({
     height: '50px'
   },
   appBar: {
-    backgroundColor:'white',
+    backgroundColor: 'white',
     '.MuiAppBar-colorPrimary': {
       color: customTheme.palette.secondary.dark
     },
@@ -56,13 +56,17 @@ export const navbarStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      boder: '1px solid blue',
     },
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
-      width: 'auto'
+      width: '50%',
+      marginLeft: '8px',
+      background: ' rgb(224, 224, 224)',
+      display: 'flex',
+      marginLeft: '15%',
     }
   },
   searchIcon: {
@@ -73,6 +77,7 @@ export const navbarStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color:'gray',
   },
   inputRoot: {
     color: 'inherit',
