@@ -12,6 +12,7 @@ import './Home.css'
 
 
 function Home(props) {
+
   const [subredditsPosts, setSubredditsPosts] = useState([]);
   const classes = homeStyle();
   useEffect(() => {
@@ -23,17 +24,18 @@ function Home(props) {
   }, [])
 
 
+
   return (
     <div className={classes.root} >
       <div className={classes.container}>
 
         <Hidden >
           <Paper className={classes.paper}
-            style={{ background: '#DAE0E6', boxShadow: 'none' }}>
+            style={{ background: '#DAE0E6', boxShadow: 'none',    }}>
 
             {subredditsPosts.map(posts => {
               return (
-                <div className="subreddit-card">
+                <div className="subreddit-card" key = {posts.subreddit_posts_id}>
                   <div className='card-words'>
 
                     <Link to={`/r/${posts.subreddit_name}`}>
@@ -71,6 +73,31 @@ function Home(props) {
             })}
           </Paper>
         </Hidden>
+
+
+        <Hidden  only="sm">
+          <Paper className={classes.paper}
+            style={{ background: '#DAE0E6', boxShadow: 'none' }}>
+
+          <div className="subreddit-card-home" style={{padding: '0px'}} >
+                  <div className='card-banner'>
+                    <img alt='reddit-banner' src={homeBanner} className = 'home-banner' />
+                  </div>
+                  <span className='card-title'>title</span>
+                  <div>
+                    <button>
+                    {/* <Link to={`/r/AskReddit}`}> */}
+                      CREATE COMMUNITY
+                    {/* </Link> */}
+                   
+                    </button>
+
+                  </div>
+                </div>
+            </Paper>
+        </Hidden>
+
+
       </div>
 
     </div >
