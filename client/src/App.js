@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Home from './Components/Home'
 import Navbar from './Components/Navbar'
 import Community from './Components/Community'
@@ -8,6 +8,7 @@ import Comments from './Components/Comments'
 import Posts from './Components/Posts'
 import Downvoted from './Components/Downvoted'
 import Upvoted from './Components/Upvoted'
+import { connect } from 'react-redux'
 
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
 
       <div className="app-route">
         <Switch>
+
           <Route path="/r/:community/" component={Community} />
           <Route path="/user/:username/" component={Profile} />
           <Route path="/user/:username/comments/" component={Comments} />
@@ -33,4 +35,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  
+  return {
+    user: state.user,
+  };
+}
+export default withRouter(connect(mapStateToProps)(App));
