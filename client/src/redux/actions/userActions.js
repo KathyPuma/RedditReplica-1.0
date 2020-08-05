@@ -2,11 +2,16 @@ import axios from 'axios'
 import {
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL
 } from '../actions/actionTypes'
 
+
 export const registerUser = (user) => {
-    console.log("USERS ACTIONS", user)
     return (dispatch) => {
         dispatch({
             type: REGISTER_REQUEST
@@ -22,6 +27,51 @@ export const registerUser = (user) => {
             .catch(error => {
                 dispatch({
                     type: REGISTER_FAIL,
+                    payload: error.response.data.message
+                })
+            })
+    }
+}
+
+
+export const loginUser = (user) => {
+
+    return (dispatch) => {
+        dispatch({
+            type: LOGIN_REQUEST
+        })
+        axios
+            .post('/auth/login', user)
+            .then(response => {
+                dispatch({
+                    type: LOGIN_SUCCESS,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type: LOGIN_FAIL,
+                    payload: error.response.data.message
+                })
+            })
+    }
+}
+
+
+export const logoutUser = (user) => {
+
+    return (dispatch) => {
+        axios
+            .get('/auth/logout', user)
+            .then(response => {
+                dispatch({
+                    type: LOGOUT_SUCCESS,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type: LOGOUT_FAIL,
                     payload: error.response.data.message
                 })
             })
