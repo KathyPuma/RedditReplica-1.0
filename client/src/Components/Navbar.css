@@ -46,9 +46,11 @@
     width: 32px;
 }
 
-.reddit-link:link{
+
+.reddit-link:link, .reddit-link:hover, .reddit-link:active, .reddit-link:visited, .reddit-link:focus{
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    color: black;
 }
     
 .reddit{
@@ -86,4 +88,22 @@
 
 .dropDown-arrowIcon{
     font-size: small;
+}
+.reddit-name{
+    font-family: "VAG Rounded W02 Thin" ;
+}
+
+.navbarButtons{
+    display: flex;
+    align-items: center;
+}
+
+.inputOutlinedIcon{
+    color:#bbbdbf;
+}
+
+.login-signup-button{
+    border: none;
+    background-color: white;
+    font-size: .8em;
 }
