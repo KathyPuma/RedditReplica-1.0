@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { loginUser } from '../../redux/actions/userActions'
-import { CssTextField, useStyles } from '../styling/buttonStyling'
+import { CssTextField, useStyles } from '../styling/InputStyling'
 
 
 function Login({ user, loginUser }) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CssTextField, useStyles } from '../styling/buttonStyling'
+import { CssTextField, useStyles } from '../styling/InputStyling'
 
 
 
