@@ -98,11 +98,3 @@ export const navbarStyles = makeStyles((theme) => ({
 
 }));
 
-
-export const StyledBadge = withStyles((theme) => ({
-  badge: {
-    right: -3,
-    top: 13,
-    border: `2px solid ${theme.palette.background.paper}`,
-  },
-}))(Badge);
