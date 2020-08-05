@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../../redux/actions/userActions'
+import Stepper from '../MaterialUiComponents/Stepper'
 
 
 function Signup({ user, registerUser }) {
@@ -12,87 +13,33 @@ function Signup({ user, registerUser }) {
     })
 
     const handleRegister = () => {
-        registerUser(newUser)
+        if (newUser.username && newUser.email && newUser.password) {
+            registerUser(newUser)
+        }
+    }
+
+    const handleOnChange = (e) => {
+        let name = e.target.name
+        let usernameInput = e.target.value
+
+        setNewUser(prevState => {
+            return { ...prevState, [name]: usernameInput }
+        })
+
     }
 
     return (
         <div className='signupPage'>
-
-            <div className='signup-stage'>
-                <div className={'singup-button'}>
-                    <div className='register'>Register</div>
-
-
-                    <div className='username-div'>
-                        <input
-                            className='username-input'
-                            type='text' name='username'
-                            id='username'
-                            placeholder='Username'
-                            onChange={e => {
-                                let usernameInput = e.target.value
-                                setNewUser(prevState => {
-                                    return { ...prevState, username: usernameInput }
-                                })
-                            }}
-                        />
-                    </div>
-
-                    <div className='email-div'>
-                        <input
-                            className='email-input'
-                            type='email'
-                            name='email'
-                            id='email'
-                            placeholder='Email'
-                            onChange={e => {
-                                let emailInput = e.target.value
-                                setNewUser(prevState => {
-                                    return { ...prevState, email: emailInput }
-                                })
-                            }}
-                        />
-                    </div>
-
-                    <div className='password-div'>
-                        <input
-                            className='password-input'
-                            type='password'
-                            name='password'
-                            id='password'
-                            placeholder='Password'
-                            onChange={e => {
-                                let passwordInput = e.target.value
-                                setNewUser(prevState => {
-                                    return { ...prevState, password: passwordInput }
-                                })
-                            }}
-                        />
-                    </div>
-
-
-                    <div className='buttons'>
-                        <div className='btn'>
-                            <button
-                                onClick={handleRegister}
-                            >Sign Up</button>
-                        </div>
-                        <div className='btn'>
-                            <button
-                            // onClick={}
-
-                            >Return</button>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+            <Stepper
+                handleOnChange={handleOnChange}
+                handleRegister={handleRegister}
+            />
         </div>
     );
 
 
 }
+
 
 const mapStateToProps = state => {
     return {
@@ -110,3 +57,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Signup)
+
