@@ -1,13 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
-// import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
-import { Button, Dialog, IconButton, Typography } from '@material-ui/core';
-import LoginPage from '../Account/LoginPage'
-import SignupPage from '../Account/SignupPage'
+import { Dialog, IconButton } from '@material-ui/core';
+import AuthLanding from '../Account/AuthLanding'
+import './Button.css'
 
 
 
@@ -29,7 +26,7 @@ const styles = (theme) => ({
 
 const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
-    console.log("props", props)
+
     return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
 
@@ -42,30 +39,13 @@ const DialogTitle = withStyles(styles)((props) => {
     );
 });
 
-const DialogActions = withStyles((theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(1),
-
-    },
-}))(MuiDialogActions);
 
 
 
 
-const modalStyles = () => ({
-    paper: { minWidth: "77700px" }
-    // paperWidthSm: {
-    //     height: '50%',
-    //     width: '50%'
-    // },
-});
 
-
-const modalStyle = modalStyles();
-export default function CustomizedDialogs({ buttonName, user }) {
+export default function CustomizedDialogs({ buttonName, user, className }) {
     const [open, setOpen] = React.useState(false);
-
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -74,32 +54,27 @@ export default function CustomizedDialogs({ buttonName, user }) {
         setOpen(false);
     };
 
-
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <button className={className} onClick={handleClickOpen}>
                 {buttonName}
-
-            </Button>
+            </button>
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}
                 disableBackdropClick
-                classes={{paperWidthSm : modalStyle.paperWidthSm}}
             >
-                <DialogTitle id="customized-dialog-title" onClose={handleClose}
+                <DialogTitle
+                    id="customized-dialog-title"
+                    onClose={handleClose}
+                    style={{ padding: '0px', width: '100vw' }}
                 >
-
                 </DialogTitle>
-                {user === 'login' ? (
-                    <div>
-                        <LoginPage />
-                    </div>
-                ) : (
-                        <div> <SignupPage /></div>
-                    )}
-              
+
+                <AuthLanding
+                    user={user}
+                />
             </Dialog>
         </div>
     );
