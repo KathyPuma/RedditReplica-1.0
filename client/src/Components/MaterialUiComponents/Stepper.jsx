@@ -1,20 +1,25 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SignUpButton from '../MaterialUiComponents/Button'
+import SignupStep1 from '.././Account/SignupStep1'
+import SignupStep2 from '.././Account/SignupStep2'
+
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 400,
         flexGrow: 1,
+        marginTop: '24px',
+        backgroundColor: 'white',
+        width: '100%'
+
     },
 });
 
-export default function DotsMobileStepper() {
+export default function DotsMobileStepper(props) {
     const classes = useStyles();
-    const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -25,35 +30,80 @@ export default function DotsMobileStepper() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    console.log(activeStep)
+
 
     return (
-        <MobileStepper
-            variant="none"
-            steps={1}
-            position="static"
-            activeStep={activeStep}
-            className={classes.root}
-            nextButton={
-                activeStep === 0 ?
-                    <Button size="small" onClick={handleNext} disabled={activeStep === 1}>
-                        Next
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                    </Button> :
-                    <Button size="small" onClick={handleBack}>
-                        Finish
-     {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                    </Button>
-
+        <div className="signup-form">
+            {
+                activeStep === 0 ? (<div>
+                    <div className='step1Form'>
+                        <SignupStep1 handleOnChange={props.handleOnChange} />
+                    </div>
+                </div>) : (<div>
+                    <div className='step2Form'>
+                        <SignupStep2 handleOnChange={props.handleOnChange} />
+                    </div>
+                </div>)
             }
-            backButton={
 
-                activeStep === 1 ?
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                        Back
-        </Button> : ''
-            }
-        />
+            <MobileStepper
+                variant="none"
+                steps={1}
+                position="static"
+                activeStep={activeStep}
+                className={classes.root}
+                nextButton={
+                    activeStep === 0 ?
+                        (<div>
+                            <Button
+                                style={{
+                                    color: 'white',
+                                    fontSize: '14px',
+                                    fontFamily: 'IBMPlexSans,sans-serif',
+                                    fontWeight: 600,
+                                    letterSpacing: '.5px',
+                                    backgroundColor: '#0079d3',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    textAlign: 'center',
+                                    background: '#0079d3',
+                                    cursor: 'pointer',
+                                    minWidth: '155px',
+                                    width: '100%',
+                                    height: '30px',
+                                }}
+                                size="small" onClick={handleNext} disabled={activeStep === 1}>
+                                CONTINUE
+                            </Button>
+
+                            <div className='stepper-loginButton'>
+                                Already a redditor?   <SignUpButton
+                                    buttonName={'LOG IN'}
+                                    user="login"
+                                    className={'login-link'}
+                                />
+                            </div>
+                        </div>) :
+                        (<div>
+                            <Button
+                                style={{ display: 'flex' }} size="small" onClick={props.handleRegister}>
+                                SIGN UP
+                            </Button></div>)
+                }
+                backButton={
+                    activeStep === 1 ?
+                        (<div>
+                            <Button style={{ display: 'flex' }} size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                Back
+                            </Button>
+                        </div>
+
+                        ) : (<></>)
+                }
+            />
+
+
+
+        </div>
     );
 }
