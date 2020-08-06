@@ -1,30 +1,18 @@
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faReddit, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
+import { AppBar, InputBase, Divider, Menu, MenuItem, Typography, IconButton, Toolbar } from '@material-ui/core';
 import SignUpButton from './MaterialUiComponents/Button'
-import '../Components/Navbar.css'
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import InputOutlinedIcon from '@material-ui/icons/InputOutlined';
-import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import customTheme from './styling/customTheme.jsx';
-import '../App.css';
-
-
-
-import { navbarStyles, StyledBadge } from './styling/navbarStyles.jsx';
-import { useRadioGroup } from '@material-ui/core';
+import { navbarStyles } from './styling/navbarStyles.jsx';
 import { logoutUser } from '../redux/actions/userActions';
 import store from '../redux/store/store'
-import axios from 'axios';
+import '../Components/Navbar.css'
 
 
 function Navbar() {
