@@ -17,22 +17,25 @@ const addNewUser = async (userObj) => {
 }
 
 const getUserByUserName = async (username) => {
-	const getUserQuery =
-		`SELECT * 
-		FROM users
-		WHERE username = $/username/;	
-		`;
+	const getUserQuery =`
+	SELECT  
+	username,
+	email,
+	avatar_url
+	FROM users
+	WHERE username = $/username/;	
+	`;
 	return await await db.oneOrNone(getUserQuery, { username })
 }
 
 const getUserByEmail = async (email) => {
 	const getQuery = `
-	SELECT username,
+	SELECT 
+	username,
 	email,
-	password,
 	avatar_url
 	FROM users
-    WHERE email = $/email/;
+	WHERE email = $/email/;
     `;
 	return await db.any(getQuery, { email });
 };
