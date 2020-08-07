@@ -1,6 +1,6 @@
 import React from 'react'
-import Login from '../Account/Login'
-import Signup from '../Account/Signup'
+import Login from './Login'
+import Signup from './Signup'
 import RedditArtLogin from '../../redditImages/reddit_loginBanner.png'
 import './AuthCSS/AuthLanding.css'
 
