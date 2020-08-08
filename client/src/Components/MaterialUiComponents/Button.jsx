@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import { Dialog, IconButton } from '@material-ui/core';
-import AuthLanding from '../Account/AuthLanding'
+import AuthLanding from '../Auth/AuthLanding'
 import './Button.css'
 
 
