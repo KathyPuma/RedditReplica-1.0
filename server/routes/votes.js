@@ -1,9 +1,24 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router();
+const voteQueries = require('../queries/votes')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+router.post('/updateVote', async (req, res, next) => {
+  const { subreddit_posts_id, voter_id, votes } = req.body
+
+  try {
+    let updatedVote = await voteQueries.updateVote({ subreddit_posts_id, voter_id }, { subreddit_posts_id, voter_id, votes })
+    res.json({
+      payload: updatedVote,
+      message: "Successfully voted",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed to vote",
+      error: true
+    })
+  }
 });
-
 module.exports = router;
