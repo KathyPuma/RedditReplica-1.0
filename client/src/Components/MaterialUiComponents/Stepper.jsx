@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import SignUpButton from '../MaterialUiComponents/Button'
-import SignupStep1 from '.././Account/SignupStep1'
-import SignupStep2 from '.././Account/SignupStep2'
+import SignupStep1 from '.././Auth/SignupStep1'
+import SignupStep2 from '.././Auth/SignupStep2'
 
 
 const useStyles = makeStyles({
