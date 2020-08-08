@@ -1,8 +1,7 @@
 const db = require('../database/db')
 
-const getAllPostBySubbreddit = async (id) => {
-    const getAllPostBySubReddit =
-    `
+const getAllPostBySubbreddit = async () => {
+    const getAllPostBySubReddit = `
     SELECT  
     subreddit.*, users.username,
     subreddit_posts.subreddit_posts_id, subreddit_posts.title , subreddit_posts.body  , subreddit_posts.photo_url ,
@@ -12,13 +11,13 @@ const getAllPostBySubbreddit = async (id) => {
     JOIN users ON users.user_id = subreddit_posts.poster_id
     FULL JOIN votes_posts ON  votes_posts.subreddit_posts_id = subreddit_posts.subreddit_posts_id
     GROUP BY subreddit.subreddit_id,users.username,subreddit_posts.subreddit_posts_id,
-    votes_posts.votes;
+    votes_posts.votes
+    ORDER BY subreddit_posts.subreddit_posts_id ASC;
     `
     return await db.any(getAllPostBySubReddit)
 }
 
 
-
 module.exports = {
-    getAllPostBySubbreddit,
+    getAllPostBySubbreddit
 };
