@@ -14,37 +14,45 @@ export const navbarStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'white',
     '.MuiAppBar-colorPrimary': {
-      color: customTheme.palette.secondary.dark
+
     },
     '.MuiSvgIcon-root': {
-      color: customTheme.palette.secondary.dark
+    
     },
   },
   customerMenu: {
-    color: customTheme.palette.secondary.dark,
+    
     'a:link': {
       textDecoration: 'none'
     }
   },
   iconStyling: {
-    color: customTheme.palette.secondary.dark
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    display: 'none',
+    display: 'flex',
     textDecoration: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
+  signupButton: {
+    display: 'none',
+    [theme.breakpoints.up('xs')]: {
+      display: 'flex',
+    },
+  },
+
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
   },
+  
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -54,19 +62,22 @@ export const navbarStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: ' rgb(224, 224, 224)',
+    marginLeft: '4%',
+    marginRight:' 4%',
+    width: '100%',
     '&:hover': {
       boder: '1px solid blue',
     },
-    marginLeft: 0,
-    width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
-      width: '50%',
+      width: '100%',
       marginLeft: '8px',
       background: ' rgb(224, 224, 224)',
       display: 'flex',
       marginLeft: '15%',
+      marginLeft: '10%',
+      marginRight:' 10%',
     }
   },
   searchIcon: {
@@ -77,17 +88,19 @@ export const navbarStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color:'gray',
+    color: 'gray',
   },
   inputRoot: {
     color: 'inherit',
   },
+
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    color:'gray',
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
       '&:focus': {
