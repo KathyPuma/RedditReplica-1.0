@@ -17,11 +17,8 @@ const addNewUser = async (userObj) => {
 }
 
 const getUserByUserName = async (username) => {
-	const getUserQuery =`
-	SELECT  
-	username,
-	email,
-	avatar_url
+	const getUserQuery = `
+	SELECT *
 	FROM users
 	WHERE username = $/username/;	
 	`;
