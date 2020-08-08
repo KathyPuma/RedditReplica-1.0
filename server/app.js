@@ -9,6 +9,7 @@ const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const subredditRouter = require('./routes/subreddit')
 const votestRouter = require('./routes/votes')
+const commentsRouter = require('./routes/comments')
 
 const app = express();
 
@@ -24,13 +25,14 @@ app.use(session({
     saveUninitialized: true
 }))
 
-app.use(passport.initialize()) 
+app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
-app.use('/subreddit',subredditRouter)
-app.use('/votes',votestRouter)
+app.use('/subreddit', subredditRouter)
+app.use('/votes', votestRouter)
+app.use('/comments', commentsRouter)
 
 
 module.exports = app;
