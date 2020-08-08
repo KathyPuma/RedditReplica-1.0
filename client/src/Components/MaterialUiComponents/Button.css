@@ -1,21 +1,22 @@
 .login-button, .signup-button{
-    font-size: .8em;
     letter-spacing: 0.02857em;
     cursor: pointer;
     margin: 0;
     display: inline-flex;
     outline: 0;
-    padding: 5px;
     align-items: center;
     vertical-align: middle;
     justify-content: center;
     text-decoration: none;
-    background-color: transparent;
+    width: 90px;;
     border-radius: 4px;
-    padding: 8px 15px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
     font-weight: bold;
+    letter-spacing: .5px;
+    line-height: 24px;
 }
-
 
 .login-button{
     color:  #0079D3;
@@ -24,8 +25,9 @@
 
 .signup-button{
     color: white;
-    border: 1px solid white;
+    border: 1px solid #0079D3;
     background-color: #0079D3;
+    margin-left: 4px;
 }
 
 .login-link{
