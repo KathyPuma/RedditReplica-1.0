@@ -13,8 +13,9 @@ CREATE TABLE users(
 
 CREATE TABLE subreddit (
     subreddit_id SERIAL PRIMARY KEY,
-    subreddit_name VARCHAR NOT NULL, 
-    subreddit_description VARCHAR NOT NULL
+    subreddit_name VARCHAR UNIQUE NOT NULL, 
+    subreddit_description VARCHAR NOT NULL,
+    subreddit_admin INT REFERENCES users(user_id)
 );
 
 CREATE TABLE subreddit_posts(
@@ -68,14 +69,13 @@ VALUES
 
 
 INSERT INTO subreddit
-    (subreddit_name, subreddit_description )
+    (subreddit_name, subreddit_description, subreddit_admin )
 VALUES
-('wholesomememes', 'Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.'),
-('Movies', 'News & Discussion about Major Motion Pictures'),
-('explainlikeimfive', 'Explain Like I''m Five is the best forum and archive on the internet for layperson-friendly explanations. Don''t Panic!'),
-('apple', 'An unofficial community to discuss Apple devices and software, including news, rumors, opinions and analysis pertaining to the company located at One Apple Park Way.'),
-('AskReddit', 'r/AskReddit is the place to ask and answer thought-provoking questions.
-');
+('wholesomememes', 'Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.', 1),
+('Movies', 'News & Discussion about Major Motion Pictures',1),
+('explainlikeimfive', 'Explain Like I''m Five is the best forum and archive on the internet for layperson-friendly explanations. Don''t Panic!',2),
+('apple', 'An unofficial community to discuss Apple devices and software, including news, rumors, opinions and analysis pertaining to the company located at One Apple Park Way.', 1),
+('AskReddit', 'r/AskReddit is the place to ask and answer thought-provoking questions.',1);
 
 
 INSERT INTO comumunity
