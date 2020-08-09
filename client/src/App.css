@@ -7,11 +7,6 @@ body{
   max-width: 100%;
 }
 
-@media (min-width: 640px){
-  .App{
-    padding: 20px 24px;
-  }
-}
 
 body{
   min-height: calc(100vh - 48px);
@@ -19,7 +14,6 @@ body{
   font-family: IBMPlexSans, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
 
 .App-header {
   background-color: #282c34;
