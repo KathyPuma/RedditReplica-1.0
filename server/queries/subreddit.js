@@ -14,7 +14,7 @@ const getAllPostBySubbreddit = async (id) => {
 
 const getSubbredditById = async (subreddit_id) => {
     const comments =
-        `SELECT  subreddit.subreddit_name , json_agg(subreddit_posts.title) AS post
+        `SELECT  subreddit.subreddit_name , subreddit.subreddit_id, json_agg(subreddit_posts.title) AS post
     FROM subreddit 
     JOIN subreddit_posts ON subreddit_posts.subreddit_id = subreddit.subreddit_id 
    JOIN users ON users.user_id = subreddit_posts.poster_id
@@ -29,12 +29,12 @@ const getSubbredditById = async (subreddit_id) => {
 
 const getSubbredditByName = async (subreddit_name) => {
     const subreddit =
-        `SELECT  subreddit.subreddit_name , json_agg(subreddit_posts) AS subreddit_posts
+        `SELECT   subreddit.subreddit_name , subreddit.subreddit_id, json_agg(subreddit_posts) AS subreddit_posts
     FROM subreddit 
     JOIN subreddit_posts ON subreddit_posts.subreddit_id = subreddit.subreddit_id 
     JOIN users ON users.user_id = subreddit_posts.poster_id
     WHERE subreddit.subreddit_name = $/subreddit_name/
-    GROUP BY subreddit.subreddit_name
+    GROUP BY subreddit.subreddit_name,  subreddit.subreddit_id
     `
     return await db.any(subreddit, { subreddit_name })
 }
