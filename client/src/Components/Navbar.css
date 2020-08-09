@@ -19,7 +19,6 @@
 
 .search{
     width: 10%;
-     /* font-family: 'Helvetica', faSearch, sans-serif; */
     z-index: 11;
     -webkit-appearance: none;
     appearance: none;
@@ -71,7 +70,6 @@
     align-items: center;
     background-color: white;
     border: none;
-    padding: 16px;
     font-size: 16px;
     cursor: pointer;
     outline: none;
@@ -90,7 +88,7 @@
     font-size: small;
 }
 .reddit-name{
-    font-family: "VAG Rounded W02 Thin" ;
+    font-family: verdana, arial, helvetica, sans-serifsans-serif;
 }
 
 .navbarButtons{
