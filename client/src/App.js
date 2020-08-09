@@ -8,8 +8,8 @@ import Comments from './Components/Comments'
 import Posts from './Components/Posts'
 import Downvoted from './Components/Downvoted'
 import Upvoted from './Components/Upvoted'
+import PostForm from './Components/PostForm'
 import { connect } from 'react-redux'
-
 import "./App.css";
 
 
@@ -20,7 +20,7 @@ function App() {
 
       <div className="app-route">
         <Switch>
-
+          <Route path="/r/:community/submit/" component={PostForm} />
           <Route path="/r/:community/" component={Community} />
           <Route path="/user/:username/" component={Profile} />
           <Route path="/user/:username/comments/" component={Comments} />
@@ -36,7 +36,7 @@ function App() {
 }
 
 const mapStateToProps = (state) => {
-  
+
   return {
     user: state.user,
   };
