@@ -1,0 +1,23 @@
+.submit-post-form{
+    color: white;
+    border: none;
+    background-color: #0079D3;
+
+
+}
+.submit-post-form:disabled{
+    background-color: #0079d37d;
+}
+
+.submit-post-form:disabled, .submit-post-form{
+    margin-top: 20px;
+    border-radius: 4px;
+    width: fit-content;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-self: flex-end;
+
+}
