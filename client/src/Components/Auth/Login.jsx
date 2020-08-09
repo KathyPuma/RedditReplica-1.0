@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { loginUser } from '../../redux/actions/userActions'
 import { CssTextField, useStyles } from '../styling/InputStyling'
 
-
-function Login({ user, loginUser }) {
+function Login({ button, loginUser }) {
     const classes = useStyles();
     const [loggedInUser, setLoggedInUser] = useState({
         username: '',
@@ -74,8 +72,6 @@ function Login({ user, loginUser }) {
         </div>
     );
 
-
 }
-
 
 export default Login
