@@ -42,8 +42,6 @@ router.get('/:subreddit_id', async (req, res, next) => {
 
 });
 
-
-
 router.get('/name/:subreddit_name', async (req, res, next) => {
   const { subreddit_name } = req.params
   try {
@@ -64,7 +62,6 @@ router.get('/name/:subreddit_name', async (req, res, next) => {
 });
 
 
-
 router.post('/add', async (req, res, next) => {
   
   const { subreddit_name, subreddit_description, subreddit_admin } = req.body
@@ -80,7 +77,7 @@ router.post('/add', async (req, res, next) => {
   } catch (err) {
     res.status(500).json({
       payload: null,
-      message: "Failed to create a new community",
+      message: "Community name taken",
       error: true
     })
   }
