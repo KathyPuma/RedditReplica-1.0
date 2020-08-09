@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { registerUser } from '../../redux/actions/userActions'
 import Stepper from '../MaterialUiComponents/Stepper'
 
 
-function Signup({ user, registerUser }) {
+function Signup({ button, registerUser }) {
     const [newUser, setNewUser] = useState({
         username: '',
         email: '',
@@ -41,20 +39,5 @@ function Signup({ user, registerUser }) {
 }
 
 
-const mapStateToProps = state => {
-    return {
-        user: state.user
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        registerUser: (user) => dispatch(registerUser(user))
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Signup)
-
+export default Signup
