@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown, faUser } from "@fortawesome/free-solid-svg-icons";
-import { faReddit, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
+import { faReddit } from '@fortawesome/free-brands-svg-icons';
 import { AppBar, InputBase, Divider, Menu, MenuItem, Typography, IconButton, Toolbar } from '@material-ui/core';
 import SignUpButton from './MaterialUiComponents/Button'
 import InputOutlinedIcon from '@material-ui/icons/InputOutlined';
@@ -25,8 +25,7 @@ function Navbar() {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const history = useHistory();
-    //   const logo = require('./carry1.png')
+
 
 
     const handleProfileMenuOpen = (event) => {
@@ -59,9 +58,7 @@ function Navbar() {
                 loggedIn: false, user: [], message: ""
             }
         }))
-        // setTimeout(() => {
-        //     history.push('/')
-        // }, 10)
+
     }
 
 
@@ -80,33 +77,15 @@ function Navbar() {
             {!state.user.loggedIn ? (
                 <div>
                     <MenuItem onClick={handleMenuClose} className={classes.customerMenu}>
-                        {/* <Link
-              to="/login"
-              style={{
-                textDecoration: "none",
-                color: customTheme.palette.secondary.dark,
-              }}
-            >
-              Login
-            </Link> */}
+
                     </MenuItem>
-                    <MenuItem onClick={handleMenuClose} className={classes.customerMenu}>
-                        <Link
-                            to={`/user/ana`}
-                            style={{
-                                textDecoration: "none",
-                                color: customTheme.palette.secondary.dark,
-                            }}
-                        >
-                            Hello
-            </Link>
-                    </MenuItem>
+
                     <Divider light />
                     <MenuItem>
                         <InputOutlinedIcon className='inputOutlinedIcon' />
 
-                        <SignUpButton buttonName={'Log In / Sign Up'}
-                            user="login"
+                        <SignUpButton buttonName='Log In / Sign Up'
+                            button="login"
                             className='login-signup-button'
                         />
                     </MenuItem>
@@ -132,11 +111,7 @@ function Navbar() {
                                     style={{
                                         backgroundColor: "#808080c2",
                                         color: "white",
-
-
                                         padding: " 3px",
-
-
                                         height: '.74em'
                                     }} />
                                 My Profile
@@ -199,27 +174,13 @@ function Navbar() {
                 />
             </div>
 
-
-
             <Divider light />
             <MenuItem>
-
-                <SignUpButton buttonName={'Log In / Sign Up'}
-                    user="login"
-                    className={'login-button'}
-
+                <SignUpButton buttonName='Log In / Sign Up'
+                    button="login"
+                    className='login-button'
                 />
-
-
-
-
-
             </MenuItem>
-
-
-
-
-
 
         </Menu>
     );
@@ -237,25 +198,19 @@ function Navbar() {
         >
             <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
-                    <Link
-                        to="/"
-                        style={{
-                            textDecoration: "none",
-                            color: customTheme.palette.secondary.dark,
-                        }}
-                    >
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            <Link className="reddit-link" to="/">
-                                <div className="reddit-home">
-                                    <FontAwesomeIcon
-                                        className='reddit-logo'
-                                        icon={faReddit} />
 
-                                </div>
-                                <p className="reddit-name">reddit</p>
-                            </Link>
-                        </Typography>
-                    </Link>
+                    <div className={classes.title} variant="h6" noWrap>
+                        <Link className="reddit-link" to="/">
+                            <div className="reddit-home">
+                                <FontAwesomeIcon
+                                    className='reddit-logo'
+                                    icon={faReddit} />
+
+                            </div>
+                            <p className="reddit-name">reddit</p>
+                        </Link>
+                    </div>
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -274,20 +229,22 @@ function Navbar() {
 
                         {!state.user.loggedIn ? (
                             <div className='navbarButtons'>
-                                <SignUpButton
-                                    buttonName={'LOG IN'}
-                                    user="login"
-                                    className={'login-button'}
+                                <div className={classes.signupButton}>
+                                    <SignUpButton
+                                        buttonName='LOG IN'
+                                        button="login"
+                                        className='login-button'
 
-                                />
+                                    />
 
 
-                                <SignUpButton
-                                    buttonName={'SIGN UP'}
-                                    user='signup'
-                                    className={'signup-button'}
+                                    <SignUpButton
+                                        buttonName='SIGN UP'
+                                        button='signup'
+                                        className='signup-button'
 
-                                />
+                                    />
+                                </div>
                             </div>
 
 
@@ -299,7 +256,10 @@ function Navbar() {
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
-                            style={{ zIndex: '2' }}
+                            disableRipple={true}
+                            disableFocusRipple={true}
+                            style={{ zIndex: '2', backgroundColor: 'none' }}
+                            className='nav-icon-button'
                         >
                             <div className="dropDown-menu">
                                 <FontAwesomeIcon
@@ -322,6 +282,7 @@ function Navbar() {
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
                             style={{ zIndex: '2' }}
+                            className='nav-icon-button'
                         >
                             <div className="dropDown-menu">
                                 <FontAwesomeIcon
