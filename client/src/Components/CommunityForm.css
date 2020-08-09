@@ -1,0 +1,104 @@
+.community-form-stage{
+    display:flex;
+    min-height: -webkit-fill-available;
+}
+
+.community-form{
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    min-width: 260px;
+    max-width: 440px;
+}
+.asterisk{
+    color: #0079D3;
+}
+
+.label{
+    display: flex;
+    margin-bottom: 8px;
+    margin-top: 17px;
+}
+
+
+.label-descript{
+    margin:0px;    
+    margin-bottom: 8px;
+    color: #808080c2;
+    
+}
+.input-form{
+    border: 1px solid #808080c2;
+    border-radius: 4px;
+    font-size: 25px;
+}
+
+.community-image{
+    width: 150px;
+    height: 100%;
+}
+
+.form-header{
+    font-size: 20px;
+}
+
+.divider-community-form{
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.submit-community-form{
+    color: white;
+    border: none;
+    background-color: #0079D3;
+}
+
+.submit-community-form:disabled{
+    background-color: #0079d37d;
+
+}
+
+.submit-community-form:disabled, .submit-community-form{
+    margin-top: 20px;
+    border-radius: 4px;
+    width: fit-content;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-self: flex-end;
+}
+
+.create-community-card
+{background: url(https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png) 0% 0% / 40px 68px;
+    height: 68px;
+    width: 41px;
+    display: flex;
+    position: relative;
+    top: -17px;
+}
+
+
+.community-title-div{    
+    display: flex;
+}
+
+.create-community-card-title{
+    display: flex;
+    align-self: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    display: inline-block;
+}
+
+
+.card-title-span{
+    font-family: Noto Sans,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    display: flex;
+    text-align: justify;
+}
