@@ -6,8 +6,6 @@ import { Dialog, IconButton } from '@material-ui/core';
 import AuthLanding from '../Auth/AuthLanding'
 import './Button.css'
 
-
-
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -19,7 +17,6 @@ const styles = (theme) => ({
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500],
-
     },
 
 });
@@ -40,11 +37,7 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 
-
-
-
-
-export default function CustomizedDialogs({ buttonName, user, className }) {
+export default function CustomizedDialogs({ buttonName, button, className }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -73,7 +66,7 @@ export default function CustomizedDialogs({ buttonName, user, className }) {
                 </DialogTitle>
 
                 <AuthLanding
-                    user={user}
+                    button={button}
                 />
             </Dialog>
         </div>
