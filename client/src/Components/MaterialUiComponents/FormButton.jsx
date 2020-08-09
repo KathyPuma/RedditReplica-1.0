@@ -3,10 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import { Dialog, IconButton } from '@material-ui/core';
-import CommunityForm from '../communityForm'
+import CommunityForm from '../CommunityForm'
 import './Button.css'
-
-
 
 const styles = (theme) => ({
     root: {
@@ -44,7 +42,7 @@ const DialogTitle = withStyles(styles)((props) => {
 
 
 
-export default function CustomizedDialogs({ buttonName, user, className }) {
+export default function CustomizedDialogs({ user }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -56,8 +54,9 @@ export default function CustomizedDialogs({ buttonName, user, className }) {
 
     return (
         <div>
-            <button className={className} onClick={handleClickOpen}>
-                {buttonName}
+            <button className='form-button'
+                onClick={handleClickOpen}>
+                CREATE COMMUNITY
             </button>
             <Dialog
                 onClose={handleClose}
@@ -72,8 +71,9 @@ export default function CustomizedDialogs({ buttonName, user, className }) {
                 >
                 </DialogTitle>
 
-                <CommunityForm />
-
+                <CommunityForm
+                    user={user}
+                    handleClose={handleClose} />
             </Dialog>
         </div>
     );
