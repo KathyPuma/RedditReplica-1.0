@@ -103,11 +103,12 @@ VALUES
 INSERT INTO votes_posts
     (subreddit_posts_id, voter_id,  votes)
 VALUES
-(1,1, 1),
-(1,2, 1),
-(1,3, 1),
-(1,4, 1),
-(2,4, 16);
+(2,1, -1),
+(2,4, 1),
+(3,1, 1),
+(3,2, 1),
+(3,3, 0),
+(3,4, 1);
 
 
 INSERT INTO comments
