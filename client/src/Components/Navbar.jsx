@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faReddit } from '@fortawesome/free-brands-svg-icons';
-import { AppBar, InputBase, Divider, Menu, MenuItem, Typography, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, InputBase, Divider, Menu, MenuItem, IconButton, Toolbar } from '@material-ui/core';
 import SignUpButton from './MaterialUiComponents/Button'
 import InputOutlinedIcon from '@material-ui/icons/InputOutlined';
 import SearchIcon from '@material-ui/icons/Search';
