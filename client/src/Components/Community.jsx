@@ -21,6 +21,7 @@ function Community(props) {
 
             <CommunityPage
                 subreddit={subreddit}
+                community={props.match.params.community}
             />
 
         </div >
