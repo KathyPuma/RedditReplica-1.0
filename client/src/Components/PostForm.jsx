@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, Route, useHistory } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
 import store from '../redux/store/store'
@@ -7,12 +8,21 @@ import './PostForm.css'
 
 function PostForm(props) {
     const state = store.getState();
-    const [subreddit_id, setSubredditId] = useState(null)
+    const [subredditId, setSubredditId] = useState(null)
+    const [createPost, setCreatePost] = useState({
+        subreddit_id: subredditId,
+        poster_id: state.user.user.user_id,
+        title: '',
+        body: '',
+        photo_url: null
+    })
 
+    const history = useHistory();
 
     useEffect(() => {
 
         const handleAllSubReddits = async () => {
+
             const getSubredditId = await axios.get(`/subreddit/name/${props.match.params.community}`)
             let subredditId = getSubredditId.data.payload[0].subreddit_id
             setSubredditId(subredditId)
@@ -23,18 +33,13 @@ function PostForm(props) {
 
 
 
-    const [createPost, setCreatePost] = useState({
-        subreddit_id: subreddit_id,
-        poster_id: state.user.user.user_id,
-        title: '',
-        body: '',
-        photo_url: null
-    })
 
     const createNewPost = async () => {
         try {
-            await axios.post(`/comments/addPost`, { subreddit_id: subreddit_id, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
-
+            await axios.post(`/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
+            setTimeout(() => {
+                history.push(`/r/${props.match.params.community}`)
+            }, 10)
         } catch (err) {
             console.log("ERROR", err)
         }
@@ -45,7 +50,7 @@ function PostForm(props) {
     const handleOnChange = (e) => {
         let name = e.target.name
         let usernameInput = e.target.value
-        console.log(name, usernameInput)
+
         setCreatePost(prevState => {
             return { ...prevState, [name]: usernameInput }
         })
