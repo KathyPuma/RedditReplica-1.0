@@ -51,7 +51,7 @@ function Login({ button, loginUser }) {
                         label="Password"
                         variant="outlined"
                         id="password"
-                        name='password'
+                        type="password"
                         onChange={handleOnChange}
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />

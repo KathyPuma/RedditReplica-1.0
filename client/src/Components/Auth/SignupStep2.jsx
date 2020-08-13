@@ -9,8 +9,8 @@ function SignupStep2({ handleOnChange }) {
 
     return (
         <div className='signupStep2Page'>
-            <h1>Choose your username</h1>
-            <h3>Your username is how other community memebers will see you. This name will be used to credit you for things you share on Reddit. What should we call you?</h3>
+            <h1 className='step2-title'>Choose your username</h1>
+            <p className='step2-description'>Your username is how other community memebers will see you. This name will be used to credit you for things you share on Reddit. What should we call you?</p>
 
             <Divider />
 
@@ -32,13 +32,13 @@ function SignupStep2({ handleOnChange }) {
                     variant="outlined"
                     id="password"
                     name='password'
+                    type="password"
                     onChange={handleOnChange}
                     style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                 />
             </div>
 
             <Divider />
-            
         </div>
     );
 
