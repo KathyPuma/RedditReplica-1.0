@@ -7,22 +7,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReddit } from '@fortawesome/free-brands-svg-icons';
 import './Home.css'
 
-function CommunityPage({ subreddit }) {
+function CommunityPage({ subreddit, community }) {
     const classes = homeStyle();
+
     return (
         <div clsssName='community-cards '>
 
             {subreddit.length !== 0 ? (<div clsssName='community-cards'>
 
-
-
                 <div style={{
                     backgroundColor: 'white', padding: '15px', width: '36%', display: 'flex', alignItems: 'center', marginRight: '0px', borderRadius: '5px',
                 }}>
 
+                    <Link className="reddit-link" to={`/r/${community}/submit`}
 
-                    <Link className="reddit-link" to={`/r/${subreddit[0].subreddit_name}/submit`}
-                        subredditId={subreddit[0].subreddit_id}
                     >
                         <div className="reddit-home">
                             <FontAwesomeIcon
@@ -60,13 +58,11 @@ function CommunityPage({ subreddit }) {
                                     width: '50%'
                                 }}>
 
-
-
-                                {subreddit[0].subreddit_posts.map(posts => {
+                                {subreddit.map(posts => {
                                     return (
                                         <div className="subreddit-card"
                                             style={{ width: '400px' }}
-                                            key={posts.subreddit_posts_id} >
+                                            key={posts.subreddit_posts[0].subreddit_posts_id} >
                                             <div className='home-card-container'
                                                 style={{ width: '-webkit-fill-available' }}>
                                                 <div className='card-words'>
@@ -85,9 +81,13 @@ function CommunityPage({ subreddit }) {
                                                         </div>
                                                     </span>
 
-                                                    <span className='card-title'>{posts.title}</span>
-                                                    <h2>{posts.body}</h2>
-                                                    <img className='subreddit-card-img' src={posts.photo_url} />
+
+                                                    <div>
+                                                        <span className='card-title'>{posts.subreddit_posts[0].title}</span>
+                                                        <h2>{posts.body}</h2>
+                                                        <img className='subreddit-card-img' src={posts.subreddit_posts[0].photo_url} />
+                                                    </div>
+
                                                 </div>
 
                                             </div>
