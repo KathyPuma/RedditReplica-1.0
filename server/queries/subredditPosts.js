@@ -12,7 +12,7 @@ const getAllPostBySubbreddit = async () => {
     FULL JOIN votes_posts ON  votes_posts.subreddit_posts_id = subreddit_posts.subreddit_posts_id
     GROUP BY subreddit.subreddit_id,users.username,subreddit_posts.subreddit_posts_id,
     votes_posts.votes
-    ORDER BY subreddit_posts.subreddit_posts_id ASC;
+    ORDER BY subreddit_posts.subreddit_posts_id DESC;
     `
     return await db.any(getAllPostBySubReddit)
 }
