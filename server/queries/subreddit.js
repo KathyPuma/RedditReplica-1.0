@@ -28,22 +28,22 @@ const getSubbredditById = async (subreddit_id) => {
 
 
 const getSubbredditByName = async (subreddit_name) => {
-    const subreddit =
-        `SELECT   subreddit.subreddit_name , subreddit.subreddit_id, json_agg(subreddit_posts) AS subreddit_posts
+    const subreddit = `
+    SELECT   subreddit.*,users.*, json_agg(subreddit_posts) AS subreddit_posts
     FROM subreddit 
     JOIN subreddit_posts ON subreddit_posts.subreddit_id = subreddit.subreddit_id 
     JOIN users ON users.user_id = subreddit_posts.poster_id
     WHERE subreddit.subreddit_name = $/subreddit_name/
-    GROUP BY subreddit.subreddit_name,  subreddit.subreddit_id
+    GROUP BY users.user_id, subreddit.subreddit_id, subreddit_posts.subreddit_posts_id
+    ORDER BY subreddit_posts_id DESC
     `
     return await db.any(subreddit, { subreddit_name })
 }
 
 const checkIfSubbredditExist = async (subreddit_name) => {
-    const subreddit =
-        `SELECT * FROM subreddit 
+    const subreddit = `
+    SELECT * FROM subreddit 
     WHERE subreddit_name = $/subreddit_name/
-    
     `
     return await db.oneOrNone(subreddit, { subreddit_name })
 }
@@ -53,9 +53,9 @@ const checkIfSubbredditExist = async (subreddit_name) => {
 const addNewSubreddit = async (subredditObj) => {
     const newSubredditQuery = `
 		INSERT INTO subreddit(subreddit_name, subreddit_description, subreddit_admin)
-			VALUES($/subreddit_name/, $/subreddit_description/ , $/subreddit_admin/ )
-            RETURNING *
-            `
+		VALUES($/subreddit_name/, $/subreddit_description/ , $/subreddit_admin/ )
+        RETURNING *
+        `
     return await db.oneOrNone(newSubredditQuery, subredditObj)
 }
 
