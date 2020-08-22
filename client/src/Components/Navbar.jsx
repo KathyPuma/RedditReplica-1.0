@@ -10,12 +10,11 @@ import InputOutlinedIcon from '@material-ui/icons/InputOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import customTheme from './styling/customTheme.jsx';
 import { navbarStyles } from './styling/navbarStyles.jsx';
-import { logoutUser } from '../redux/actions/userActions';
 import store from '../redux/store/store'
 import '../Components/Navbar.css'
 
 
-function Navbar() {
+function Navbar({logoutUser, user}) {
     const state = store.getState();
     const classes = navbarStyles();
 
@@ -51,15 +50,9 @@ function Navbar() {
     const menuId = "primary-search-account-menu";
 
 
-    const logUserOut = async () => {
-        await axios.get('/auth/logout')
-        localStorage.setItem('store', JSON.stringify({
-            user: {
-                loggedIn: false, user: [], message: ""
-            }
-        }))
+    
 
-    }
+   
 
 
     const renderMenu = (
@@ -127,7 +120,8 @@ function Navbar() {
                                     textDecoration: "none",
                                     color: customTheme.palette.secondary.dark,
                                 }}
-                                onClick={logUserOut}
+                                onClick={logoutUser}
+                   
 
                             >
                                 Logout
