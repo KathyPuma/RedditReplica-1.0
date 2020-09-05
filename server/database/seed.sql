@@ -1,8 +1,10 @@
-DROP DATABASE if exists reddit_replica;
-CREATE DATABASE reddit_replica;
+-- DROP DATABASE if exists reddit_replica;
+-- CREATE DATABASE reddit_replica;
 
-\c reddit_replica
+-- \c reddit_replica
 
+
+DROP TABLE IF exists users CASCADE; 
 CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
    username VARCHAR UNIQUE NOT NULL,
@@ -11,6 +13,7 @@ CREATE TABLE users(
    avatar_url TEXT DEFAULT ''
 );
 
+DROP TABLE IF exists subreddit CASCADE;
 CREATE TABLE subreddit (
     subreddit_id SERIAL PRIMARY KEY,
     subreddit_name VARCHAR UNIQUE NOT NULL, 
@@ -18,6 +21,7 @@ CREATE TABLE subreddit (
     subreddit_admin INT REFERENCES users(user_id)
 );
 
+DROP TABLE IF exists subreddit_posts CASCADE;
 CREATE TABLE subreddit_posts(
     subreddit_posts_id SERIAL PRIMARY KEY,
     subreddit_id  INT REFERENCES subreddit(subreddit_id),
@@ -28,6 +32,7 @@ CREATE TABLE subreddit_posts(
     time_post text DEFAULT NOW()
 );
 
+DROP TABLE IF exists comments CASCADE;
 CREATE TABLE comments(
    comment_id SERIAL PRIMARY KEY,
     subreddit_posts INT REFERENCES subreddit_posts(subreddit_posts_id),
@@ -36,6 +41,7 @@ CREATE TABLE comments(
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF exists comment_replies CASCADE;
 CREATE TABLE comment_replies(
    comment_replies_id SERIAL PRIMARY KEY,
    comment_id INT REFERENCES comments(comment_id),
@@ -44,12 +50,14 @@ CREATE TABLE comment_replies(
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF exists comumunity CASCADE;
 CREATE TABLE comumunity (
     comumunity_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     subreddit_id  INT REFERENCES subreddit(subreddit_id)
 );
 
+DROP TABLE IF exists votes_posts CASCADE;
 CREATE TABLE votes_posts(
     votes_posts_id SERIAL PRIMARY KEY,
     subreddit_posts_id INT REFERENCES subreddit_posts(subreddit_posts_id),

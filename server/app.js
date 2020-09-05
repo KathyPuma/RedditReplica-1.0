@@ -19,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "/public")));
+
+
 app.use(session({
     secret: "NOT_A_GOOD_SECRET",
     resave: false,
@@ -34,5 +38,9 @@ app.use('/subreddit', subredditRouter)
 app.use('/votes', votestRouter)
 app.use('/comments', commentsRouter)
 
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = app;

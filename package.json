@@ -1,0 +1,27 @@
+{
+  "name": "Clone_App",
+  "version": "1.0.0",
+  "description": "This Reddit Clone app is meant to replicate Reddit.",
+  "main": "index.js",
+  "dependencies": {
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "cd server && npm start",
+    "heroku-prebuild": "cd server && npm install && cd ../client && npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KathyPuma/Clone_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KathyPuma/Clone_App/issues"
+  },
+  "homepage": "https://github.com/KathyPuma/Clone_App#readme"
+}
