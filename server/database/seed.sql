@@ -1,7 +1,7 @@
-DROP DATABASE if exists reddit_clone;
-CREATE DATABASE reddit_clone;
+DROP DATABASE if exists reddit_replica;
+CREATE DATABASE reddit_replica;
 
-\c reddit_clone
+\c reddit_replica
 
 CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
@@ -91,24 +91,21 @@ INSERT INTO subreddit_posts
     (subreddit_id, poster_id, title,  body, photo_url)
 VALUES
 (1,1, 'Sup little person?', NULL, 'https://i.redd.it/q4b36002aa651.jpg' ),
-(1,2, 'Check check and Happy',NULL, 'https://i.redd.it/5wojr10qef651.jpg'),
 (2,4, 'Jurassic Park Roars To No. 1 Again, 27 Years Later Box Office', NULL, NULL ),
 (3,3, 'ELI5: how do show/ movie directors get shots and scenes of totally abandoned cities?', NULL, NULL),
 (3,4,'ELI5: Why are other mammals born with the ability to swim, but humans have to learn?', NULL, NULL),
 (4,1, 'Phone Calls Will Finally Stop Taking Up the Entire Screen in iOS 14', NULL, NULL),
+(5,2, 'To the people who pour the milk before adding cereal, why?', NULL, NULL),
 (5,5, 'What fictional character were you afraid the most when you were kid', NULL, NULL),
-(5,2, 'To the people who pour the milk before adding cereal, why?', NULL, NULL);
+(1,2, 'Check check and Happy',NULL, 'https://i.redd.it/5wojr10qef651.jpg');
 
 
 INSERT INTO votes_posts
     (subreddit_posts_id, voter_id,  votes)
 VALUES
-(2,1, -1),
-(2,4, 1),
-(3,1, 1),
-(3,2, 1),
-(3,3, 0),
-(3,4, 1);
+(7,1, 1),
+(8,3, 1);
+(8,4, 1);
 
 
 INSERT INTO comments
