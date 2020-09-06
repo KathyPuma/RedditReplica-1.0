@@ -10,13 +10,19 @@ import Downvoted from './Components/Downvoted'
 import Upvoted from './Components/Upvoted'
 import PostForm from './Components/PostForm'
 import { connect } from 'react-redux'
+import { logoutUser } from './redux/actions/userActions'
 import "./App.css";
 
 
-function App() {
+function App({user}) {
+
   return (
+
     <div className="App">
-      <Navbar />
+      <Navbar 
+      logoutUser = {logoutUser}
+      user = {user.user}
+      />
 
       <div className="app-route">
         <Switch>
@@ -41,4 +47,16 @@ const mapStateToProps = (state) => {
     user: state.user,
   };
 }
-export default withRouter(connect(mapStateToProps)(App));
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logoutUser: () => dispatch(logoutUser()),
+     
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
