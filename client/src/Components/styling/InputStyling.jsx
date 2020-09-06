@@ -12,7 +12,6 @@ export const CssTextField = withStyles({
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '#EFEFED',
-        // width: '100%',
       },
       '&:hover fieldset': {
         borderColor: '#EFEFED',
