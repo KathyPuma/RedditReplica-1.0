@@ -58,11 +58,11 @@ export const loginUser = (user) => {
 }
 
 
-export const logoutUser = (user) => {
+export const logoutUser = () => {
 
     return (dispatch) => {
         axios
-            .get('/auth/logout', user)
+            .get('/auth/logout')
             .then(response => {
                 dispatch({
                     type: LOGOUT_SUCCESS,
