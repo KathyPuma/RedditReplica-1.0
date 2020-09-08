@@ -29,8 +29,12 @@ function Home() {
 
 
   const handleVote = async (postId, vote) => {
-    const allSubreddits = await axios.post(`/votes/updateVote`, { subreddit_posts_id: postId, voter_id: state.user.user.user_id, votes: vote })
-    handleAllSubReddits()
+
+    if (state.user.user.user_id) {
+      const allSubreddits = await axios.post(`/votes/updateVote`, { subreddit_posts_id: postId, voter_id: state.user.user.user_id, votes: vote })
+      handleAllSubReddits()
+    } 
+
   }
 
 
