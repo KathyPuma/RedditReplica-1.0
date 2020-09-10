@@ -1,6 +1,9 @@
-# Reddit Clone
+# RedditReplica
 
-This Reddit Clone app is meant to replicate Reddit.
+## Deployed: http://reddit-replica1.herokuapp.com/
+
+This RedditReplica app is meant to replicate Reddit.
+
 
 ## Features
 
