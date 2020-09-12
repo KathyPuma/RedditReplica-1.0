@@ -1,9 +1,26 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const userQueries= require('../queries/users')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+
+router.get('/', async (req, res, next) => {
+  try {
+    let users = await userQueries.getAllUsers()
+    res.json({
+      payload: users,
+      message: "Retrieved all users",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed retrieving all users",
+      error: true
+    })
+  }
 });
+
+
 
 module.exports = router;
