@@ -112,7 +112,7 @@ INSERT INTO votes_posts
     (subreddit_posts_id, voter_id,  votes)
 VALUES
 (7,1, 1),
-(8,3, 1);
+(8,3, 1),
 (8,4, 1);
 
 
