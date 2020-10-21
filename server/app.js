@@ -31,11 +31,11 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/auth', authRouter);
-app.use('/users', usersRouter);
-app.use('/subreddit', subredditRouter)
-app.use('/votes', votestRouter)
-app.use('/comments', commentsRouter)
+app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/subreddit', subredditRouter)
+app.use('/api/votes', votestRouter)
+app.use('/api/comments', commentsRouter)
 
 
 app.get("*", (req, res) => {
