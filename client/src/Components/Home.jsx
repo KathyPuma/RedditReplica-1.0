@@ -22,7 +22,7 @@ function Home() {
   }, [])
 
   const handleAllSubReddits = async () => {
-    const allSubreddits = await axios.get(`/subreddit`)
+    const allSubreddits = await axios.get(`/api/subreddit`)
     setSubredditsPosts(allSubreddits.data.payload)
   }
 
@@ -31,7 +31,7 @@ function Home() {
   const handleVote = async (postId, vote) => {
 
     if (state.user.user.user_id) {
-      const allSubreddits = await axios.post(`/votes/updateVote`, { subreddit_posts_id: postId, voter_id: state.user.user.user_id, votes: vote })
+      const allSubreddits = await axios.post(`/api//votes/updateVote`, { subreddit_posts_id: postId, voter_id: state.user.user.user_id, votes: vote })
       handleAllSubReddits()
     } 
 

@@ -9,7 +9,7 @@ function Community(props) {
 
     useEffect(() => {
         const handleAllSubReddits = async () => {
-            const allSubreddits = await axios.get(`/subreddit/name/${props.match.params.community}`)
+            const allSubreddits = await axios.get(`/api/subreddit/name/${props.match.params.community}`)
             setSubreddit(allSubreddits.data.payload)
         }
         handleAllSubReddits()

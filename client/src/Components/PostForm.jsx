@@ -23,7 +23,7 @@ function PostForm(props) {
 
         const handleAllSubReddits = async () => {
 
-            const getSubredditId = await axios.get(`/subreddit/name/${props.match.params.community}`)
+            const getSubredditId = await axios.get(`/api//subreddit/name/${props.match.params.community}`)
             let subredditId = getSubredditId.data.payload[0].subreddit_id
             setSubredditId(subredditId)
         }
@@ -36,7 +36,7 @@ function PostForm(props) {
 
     const createNewPost = async () => {
         try {
-            await axios.post(`/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
+            await axios.post(`/api/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
             setTimeout(() => {
                 history.push(`/r/${props.match.params.community}`)
             }, 10)

@@ -14,7 +14,7 @@ function CommunityForm({ user, handleClose }) {
 
     const createNewCommunity = async () => {
         try {
-            await axios.post(`/subreddit/add`, { subreddit_name: createCommunity.name, subreddit_description: createCommunity.description, subreddit_admin: user.user.user_id })
+            await axios.post(`/api//subreddit/add`, { subreddit_name: createCommunity.name, subreddit_description: createCommunity.description, subreddit_admin: user.user.user_id })
             setCommunityErrResponse(null)
             handleClose()
         } catch (err) {
