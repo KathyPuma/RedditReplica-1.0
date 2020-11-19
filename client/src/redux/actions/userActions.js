@@ -17,7 +17,7 @@ export const registerUser = (user) => {
             type: REGISTER_REQUEST
         })
         axios
-            .post('/auth/signup', user)
+            .post('/api/auth/signup', user)
             .then(response => {
                 dispatch({
                     type: REGISTER_SUCCESS,
@@ -41,7 +41,7 @@ export const loginUser = (user) => {
             type: LOGIN_REQUEST
         })
         axios
-            .post('/auth/login', user)
+            .post('/api/auth/login', user)
             .then(response => {
                 dispatch({
                     type: LOGIN_SUCCESS,
@@ -62,7 +62,7 @@ export const logoutUser = () => {
 
     return (dispatch) => {
         axios
-            .get('/auth/logout')
+            .get('/api/auth/logout')
             .then(response => {
                 dispatch({
                     type: LOGOUT_SUCCESS,
