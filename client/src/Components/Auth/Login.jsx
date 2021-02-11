@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { CssTextField, useStyles } from '../styling/InputStyling'
 
-function Login({ button, loginUser }) {
+function Login({ button, loginUser, SetLoginAction }) {
     const classes = useStyles();
     const [loggedInUser, setLoggedInUser] = useState({
         username: '',
@@ -12,7 +12,6 @@ function Login({ button, loginUser }) {
     const handleLogin = () => {
         loginUser(loggedInUser)
     }
-
 
     const handleOnChange = (e) => {
         let name = e.target.name
@@ -44,8 +43,6 @@ function Login({ button, loginUser }) {
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />
 
-
-
                     <CssTextField
                         className={classes.margin}
                         label="Password"
@@ -65,7 +62,7 @@ function Login({ button, loginUser }) {
 
                     <div className='signup-link'>
                         New to Reddit?
-                        <span className='su-link'>SIGN UP</span>
+                        <span className='su-link' onClick={() => SetLoginAction('SignUp')}>SIGN UP</span>
                     </div>
                 </div>
             </div>

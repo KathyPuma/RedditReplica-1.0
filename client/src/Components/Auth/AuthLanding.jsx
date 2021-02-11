@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Login from './Login'
 import Signup from './Signup'
 import { connect } from 'react-redux'
@@ -7,22 +7,29 @@ import RedditArtLogin from '../../redditImages/reddit_loginBanner.png'
 import './AuthCSS/AuthLanding.css'
 
 function AuthLanding({ button, registerUser, loginUser }) {
+    const [loginAction, SetLoginAction] = useState(button)
 
+    console.log('button,', loginAction)
     return (
         <div className='authLanding-page'>
             <img className="reddit_login_art" alt="reddit-login-art" src={RedditArtLogin} />
 
-            {button === 'login' ? (
+            {loginAction === 'Login' ? (
                 <div>
                     <Login
                         button={button}
-                        loginUser={loginUser} />
+                        loginUser={loginUser}
+                        SetLoginAction={SetLoginAction}
+                    />
+
                 </div>
             ) : (
                     <div>
                         <Signup
                             button={button}
-                            registerUser={registerUser} />
+                            registerUser={registerUser}
+                            SetLoginAction={SetLoginAction}
+                        />
                     </div>
                 )}
         </div>

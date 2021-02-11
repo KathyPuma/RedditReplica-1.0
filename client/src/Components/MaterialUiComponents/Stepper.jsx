@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
@@ -18,9 +18,13 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DotsMobileStepper(props) {
+
+
+export default function DotsMobileStepper({ handleOnChange, handleRegister, SetLoginAction }) {
+
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
+
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -30,18 +34,16 @@ export default function DotsMobileStepper(props) {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-
-
     return (
         <div className="signup-form">
             {
                 activeStep === 0 ? (<div>
                     <div className='step1Form'>
-                        <SignupStep1 handleOnChange={props.handleOnChange} />
+                        <SignupStep1 handleOnChange={handleOnChange} />
                     </div>
                 </div>) : (<div>
                     <div className='step2Form'>
-                        <SignupStep2 handleOnChange={props.handleOnChange} />
+                        <SignupStep2 handleOnChange={handleOnChange} />
                     </div>
                 </div>)
             }
@@ -76,17 +78,14 @@ export default function DotsMobileStepper(props) {
                                 CONTINUE
                             </Button>
 
-                            <div className='stepper-loginButton'>
-                                Already a redditor?   <SignUpButton
-                                    buttonName={'LOG IN'}
-                                    user="login"
-                                    className={'login-link'}
-                                />
+                            <div className='stepper-loginButton'
+                            >
+                                Already a redditor?   <button onClick={() => SetLoginAction("Login")}> Log in</button>
                             </div>
                         </div>) :
                         (<div>
                             <Button
-                                style={{ display: 'flex' }} size="small" onClick={props.handleRegister}>
+                                style={{ display: 'flex' }} size="small" onClick={handleRegister}>
                                 SIGN UP
                             </Button></div>)
                 }

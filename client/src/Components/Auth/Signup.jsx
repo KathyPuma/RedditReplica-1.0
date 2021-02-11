@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Stepper from '../MaterialUiComponents/Stepper'
 
 
-function Signup({ button, registerUser }) {
+function Signup({ button, registerUser, SetLoginAction }) {
     const [newUser, setNewUser] = useState({
         username: '',
         email: '',
@@ -31,6 +31,7 @@ function Signup({ button, registerUser }) {
             <Stepper
                 handleOnChange={handleOnChange}
                 handleRegister={handleRegister}
+                SetLoginAction={SetLoginAction}
             />
         </div>
     );

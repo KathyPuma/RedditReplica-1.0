@@ -78,7 +78,7 @@ function Navbar({logoutUser, user}) {
                         <InputOutlinedIcon className='inputOutlinedIcon' />
 
                         <SignUpButton buttonName='Log In / Sign Up'
-                            button="login"
+                            button="Login"
                             className='login-signup-button'
                         />
                     </MenuItem>
@@ -171,7 +171,7 @@ function Navbar({logoutUser, user}) {
             <Divider light />
             <MenuItem>
                 <SignUpButton buttonName='Log In / Sign Up'
-                    button="login"
+                    button="Login"
                     className='login-button'
                 />
             </MenuItem>
@@ -226,7 +226,7 @@ function Navbar({logoutUser, user}) {
                                 <div className={classes.signupButton}>
                                     <SignUpButton
                                         buttonName='LOG IN'
-                                        button="login"
+                                        button="Login"
                                         className='login-button'
 
                                     />
@@ -234,7 +234,7 @@ function Navbar({logoutUser, user}) {
 
                                     <SignUpButton
                                         buttonName='SIGN UP'
-                                        button='signup'
+                                        button='Signup'
                                         className='signup-button'
 
                                     />
