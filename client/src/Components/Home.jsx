@@ -15,7 +15,7 @@ function Home() {
   const state = store.getState();
 
   const [subredditsPosts, setSubredditsPosts] = useState([]);
-  const classes = homeStyle();
+  const homeStyleTheme = homeStyle();
 
   useEffect(() => {
     handleAllSubReddits()
@@ -39,11 +39,11 @@ function Home() {
 
 
   return (
-    <div className={classes.root} >
-      <div className={classes.container}>
+    <div className={homeStyleTheme.root} >
+      <div className={homeStyleTheme.container}>
 
         <Hidden >
-          <Paper className={classes.paper}
+          <Paper className={homeStyleTheme.paper}
             style={{
               background: '#DAE0E6', boxShadow: 'none',
               display: 'flex',
@@ -59,7 +59,7 @@ function Home() {
                     <div className='card-words'>
 
 
-                      <Link to={`/r/${posts.subreddit_name}`}>
+                    <Link to={`/r/${posts.subreddit_name}`}>
                         <span>r/{posts.subreddit_name} </span>
                       </Link>
                       <span>posted by
@@ -102,7 +102,7 @@ function Home() {
         {state.user.loggedIn ? (<div>
 
           <Hidden smDown >
-            <Paper className={classes.paper}
+            <Paper className={homeStyleTheme.paper}
               style={{ background: '#DAE0E6', boxShadow: 'none', display: 'inline', padding: '12px' }}>
 
               <div className="subreddit-card-home">
