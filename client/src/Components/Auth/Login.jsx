@@ -56,7 +56,7 @@ function Login({ button, loginUser, SetLoginAction }) {
                     <div >
                         <button className='login-button-form'
                             onClick={handleLogin}
-                        >Login</button>
+                        >LOG IN</button>
                     </div>
 
 
