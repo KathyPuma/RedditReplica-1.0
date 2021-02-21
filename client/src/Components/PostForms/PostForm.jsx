@@ -1,51 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, useHistory } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
-import store from '../redux/store/store'
+import store from '../../redux/store/store'
 import './PostForm.css'
 
 
-function PostForm(props) {
+function PostForm({commuityId}) {
     const state = store.getState();
-    const [subredditId, setSubredditId] = useState(null)
+
     const [createPost, setCreatePost] = useState({
-        subreddit_id: subredditId,
+        commuityId: commuityId,
         poster_id: state.user.user.user_id,
         title: '',
         body: '',
-        photo_url: null
+        photo_url: null,
     })
-
-    const history = useHistory();
-
-    useEffect(() => {
-
-        const handleAllSubReddits = async () => {
-
-            const getSubredditId = await axios.get(`/api//subreddit/name/${props.match.params.community}`)
-            let subredditId = getSubredditId.data.payload[0].subreddit_id
-            setSubredditId(subredditId)
-        }
-        handleAllSubReddits()
-    }, [])
-
-
-
-
 
     const createNewPost = async () => {
         try {
-            await axios.post(`/api/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
-            setTimeout(() => {
-                history.push(`/r/${props.match.params.community}`)
-            }, 10)
+            await axios.post(`/api/comments/addPost`, { subreddit_id: commuityId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
         } catch (err) {
             console.log("ERROR", err)
         }
     }
-
-
 
     const handleOnChange = (e) => {
         let name = e.target.name
@@ -59,10 +36,7 @@ function PostForm(props) {
 
     return (
         <div className='post-form-stage' style={{ paddingTop: '15px' }} >
-            <span className='post-header'>  Create A Post</span>
-
             <Divider style={{ backgroundColor: 'white', marginTop: '15px', marginBottom: '15px' }} />
-
             <div style={{
                 backgroundColor: 'white',
                 display: 'flex',
