@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 import Divider from '@material-ui/core/Divider';
-import communityImg from '../redditImages/reddit_createCommunity.jpg'
-import './CommunityForm.css'
+import communityImg from '../redditImages/reddit_createCommunity.jpg';
+import { useFormFields } from './Helpers/HelperFunctions';
+import './CommunityForm.css';
 
 function CommunityForm({ user, handleClose }) {
-    const [createCommunity, setCreateCommunity] = useState({
+    const [createCommunity, setCreateCommunity] = useFormFields({
         name: "",
         description: ""
-    })
+    });
     const [communityErrResponse, setCommunityErrResponse] = useState(null)
-
 
     const createNewCommunity = async () => {
         try {
@@ -21,15 +21,6 @@ function CommunityForm({ user, handleClose }) {
             console.log("ERROR", err)
             setCommunityErrResponse(err.response.data.message)
         }
-    }
-
-
-    const handleOnChange = (e) => {
-        let name = e.target.name
-        let usernameInput = e.target.value
-        setCreateCommunity(prevState => {
-            return { ...prevState, [name]: usernameInput }
-        })
     }
 
     return (
@@ -56,7 +47,8 @@ function CommunityForm({ user, handleClose }) {
                     name='name'
                     type='text'
                     className="input-form"
-                    onChange={handleOnChange}
+                    value={createCommunity.name}
+                    onChange={setCreateCommunity}
                 />
 
 
@@ -74,7 +66,8 @@ function CommunityForm({ user, handleClose }) {
                     id="description"
                     name='description'
                     className='input-form'
-                    onChange={handleOnChange}
+                    value={createCommunity.description}
+                    onChange={setCreateCommunity}
                 />
 
                 <button
@@ -85,13 +78,8 @@ function CommunityForm({ user, handleClose }) {
             </button>
                 {communityErrResponse}
             </div>
-
-
-
         </div>
-
     )
-
 }
 
 

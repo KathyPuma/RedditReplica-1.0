@@ -1,29 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { CssTextField, useStyles } from '../styling/InputStyling'
+import { useFormFields } from '../Helpers/HelperFunctions'
 
-function Login({ button, loginUser, SetLoginAction }) {
+function Login({ loginUser, SetLoginAction }) {
     const classes = useStyles();
-    const [loggedInUser, setLoggedInUser] = useState({
-        username: '',
-        password: ''
-
-    })
+    const [loggedInUser, setLoggedInUser] = useFormFields({
+        username: "",
+        password: "",
+    });
 
     const handleLogin = () => {
         loginUser(loggedInUser)
     }
-
-    const handleOnChange = (e) => {
-        let name = e.target.name
-        let usernameInput = e.target.value
-
-        setLoggedInUser(prevState => {
-            return { ...prevState, [name]: usernameInput }
-        })
-
-    }
-
-
 
     return (
         <div className='loginPage'>
@@ -39,7 +27,8 @@ function Login({ button, loginUser, SetLoginAction }) {
                         variant="outlined"
                         id="username"
                         name='username'
-                        onChange={handleOnChange}
+                        value={loggedInUser.username}
+                        onChange={setLoggedInUser}
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />
 
@@ -49,7 +38,10 @@ function Login({ button, loginUser, SetLoginAction }) {
                         variant="outlined"
                         id="password"
                         type="password"
-                        onChange={handleOnChange}
+                        value={loggedInUser.password}
+                        onChange={setLoggedInUser}
+
+
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />
 

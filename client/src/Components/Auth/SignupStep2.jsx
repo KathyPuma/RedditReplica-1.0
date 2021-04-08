@@ -1,12 +1,9 @@
-import React from 'react'
-import { CssTextField, useStyles } from '../styling/InputStyling'
+import React from 'react';
+import { CssTextField, useStyles } from '../styling/InputStyling';
 import Divider from '@material-ui/core/Divider';
 
-
-
-function SignupStep2({ handleOnChange }) {
+function SignupStep2({ setNewUser, newUser }) {
     const classes = useStyles();
-
     return (
         <div className='signupStep2Page'>
             <h1 className='step2-title'>Choose your username</h1>
@@ -22,7 +19,8 @@ function SignupStep2({ handleOnChange }) {
                     variant="outlined"
                     id="username"
                     name='username'
-                    onChange={handleOnChange}
+                    value={newUser.username}
+                    onChange={setNewUser}
                     style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                 />
 
@@ -33,7 +31,8 @@ function SignupStep2({ handleOnChange }) {
                     id="password"
                     name='password'
                     type="password"
-                    onChange={handleOnChange}
+                    value={newUser.password}
+                    onChange={setNewUser}
                     style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                 />
             </div>

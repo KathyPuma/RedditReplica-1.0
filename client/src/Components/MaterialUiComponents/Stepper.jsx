@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
-import SignUpButton from '../MaterialUiComponents/Button'
-import SignupStep1 from '.././Auth/SignupStep1'
-import SignupStep2 from '.././Auth/SignupStep2'
+import SignupStep1 from '.././Auth/SignupStep1';
+import SignupStep2 from '.././Auth/SignupStep2';
 
 
 const useStyles = makeStyles({
@@ -19,8 +18,7 @@ const useStyles = makeStyles({
 });
 
 
-
-export default function DotsMobileStepper({ handleOnChange, handleRegister, SetLoginAction }) {
+export default function DotsMobileStepper({ setNewUser, newUser, handleRegister, SetLoginAction }) {
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -39,11 +37,16 @@ export default function DotsMobileStepper({ handleOnChange, handleRegister, SetL
             {
                 activeStep === 0 ? (<div>
                     <div className='step1Form'>
-                        <SignupStep1 handleOnChange={handleOnChange} />
+                        <SignupStep1
+                            setNewUser={setNewUser}
+                            newUser={newUser}
+                        />
                     </div>
                 </div>) : (<div>
                     <div className='step2Form'>
-                        <SignupStep2 handleOnChange={handleOnChange} />
+                        <SignupStep2
+                            setNewUser={setNewUser}
+                            newUser={newUser} />
                     </div>
                 </div>)
             }

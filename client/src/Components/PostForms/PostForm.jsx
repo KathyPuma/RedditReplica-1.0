@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Divider from '@material-ui/core/Divider';
+import { useFormFields } from '../Helpers/HelperFunctions';
 import axios from 'axios';
-import store from '../../redux/store/store'
-import './PostForm.css'
+import store from '../../redux/store/store';
+import './PostForm.css';
 
 
-function PostForm({commuityId}) {
+function PostForm({ commuityId }) {
     const state = store.getState();
-
-    const [createPost, setCreatePost] = useState({
+    const [createPost, setCreatePost] = useFormFields({
         commuityId: commuityId,
         poster_id: state.user.user.user_id,
         title: '',
         body: '',
         photo_url: null,
-    })
+    });
+
 
     const createNewPost = async () => {
         try {
@@ -24,14 +25,6 @@ function PostForm({commuityId}) {
         }
     }
 
-    const handleOnChange = (e) => {
-        let name = e.target.name
-        let usernameInput = e.target.value
-
-        setCreatePost(prevState => {
-            return { ...prevState, [name]: usernameInput }
-        })
-    }
 
 
     return (
@@ -51,7 +44,8 @@ function PostForm({commuityId}) {
                     name='title'
                     type='text'
                     className="title-form"
-                    onChange={handleOnChange}
+                    value={createPost.title}
+                    onChange={setCreatePost}
                     placeholder='Title'
                     style={{ marginTop: '25px', }}
                 />
@@ -63,7 +57,8 @@ function PostForm({commuityId}) {
                     className='input-form'
                     type='text'
                     placeholder='Text (optional)'
-                    onChange={handleOnChange}
+                    value={createPost.body}
+                    onChange={setCreatePost}
                     style={{ marginTop: '25px', height: '25%' }}
                 />
 
