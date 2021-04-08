@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import Login from './Login'
-import Signup from './Signup'
-import { connect } from 'react-redux'
-import { registerUser, loginUser } from '../../redux/actions/userActions'
-import RedditArtLogin from '../../redditImages/reddit_loginBanner.png'
-import './AuthCSS/AuthLanding.css'
+import React, { useState } from 'react';
+import Login from './Login';
+import Signup from './Signup';
+import { connect } from 'react-redux';
+import { registerUser, loginUser } from '../../redux/actions/userActions';
+import RedditArtLogin from '../../redditImages/reddit_loginBanner.png';
+import './AuthCSS/AuthLanding.css';
 
 function AuthLanding({ button, registerUser, loginUser }) {
     const [loginAction, SetLoginAction] = useState(button)
 
-    console.log('button,', loginAction)
     return (
         <div className='authLanding-page'>
             <img className="reddit_login_art" alt="reddit-login-art" src={RedditArtLogin} />
@@ -17,7 +16,6 @@ function AuthLanding({ button, registerUser, loginUser }) {
             {loginAction === 'Login' ? (
                 <div>
                     <Login
-                        button={button}
                         loginUser={loginUser}
                         SetLoginAction={SetLoginAction}
                     />
@@ -26,7 +24,6 @@ function AuthLanding({ button, registerUser, loginUser }) {
             ) : (
                     <div>
                         <Signup
-                            button={button}
                             registerUser={registerUser}
                             SetLoginAction={SetLoginAction}
                         />
