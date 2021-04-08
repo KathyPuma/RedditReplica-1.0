@@ -4,10 +4,10 @@ import axios from 'axios';
 
 
 
-function Profile() {
+function Comments() {
     return (
-        <div className="profile-stage"  >   
+        <div className="downvoted-stage"  >   
         </div >
     )
 }
-export default Profile;
+export default Comments;
