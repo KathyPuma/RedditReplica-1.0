@@ -62,6 +62,28 @@ router.get('/name/:subreddit_name', async (req, res, next) => {
 });
 
 
+router.get('/subredditName/:subreddit_name', async (req, res, next) => {
+  const { subreddit_name } = req.params  
+  try {
+    let posts = await subredditQueries.checkIfSubbredditExist(subreddit_name)
+    res.json({
+      payload: posts,
+      message: "Retrieved subreddit information by subreddit name",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed retrieving subreddit information by subreddit name",
+      error: true
+    })
+  }
+
+});
+
+
+
+
 router.post('/add', async (req, res, next) => {
   
   const { subreddit_name, subreddit_description, subreddit_admin } = req.body
@@ -83,6 +105,32 @@ router.post('/add', async (req, res, next) => {
   }
 
 });
+
+
+
+
+router.post('/', async (req, res, next) => {
+  
+  const { subreddit_name, subreddit_description, subreddit_admin } = req.body
+
+  try {
+    let newSubreddit = await subredditQueries.addNewSubreddit({ subreddit_name, subreddit_description, subreddit_admin })
+  
+    res.json({
+      payload: newSubreddit,
+      message: "Successfully created a new community",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Community name taken",
+      error: true
+    })
+  }
+
+});
+
 
 
 
