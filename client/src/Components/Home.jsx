@@ -61,7 +61,7 @@ function Home() {
 
                     <Link to={`/r/${posts.subreddit_name}`}>
                         <span>r/{posts.subreddit_name} </span>
-                      </Link>
+                      </Link> 
                       <span>posted by
                              <div>  <Link to={`/user/${posts.username}`}>
                           <span>
@@ -72,7 +72,7 @@ function Home() {
                       </span>
 
                       <span className='card-title'>{posts.title}</span>
-                      <h2>{posts.body}</h2>
+                      <h2 className = 'card-body'>{posts.body}</h2>
                       <img className='subreddit-card-img' src={posts.photo_url} />
                     </div>
 
