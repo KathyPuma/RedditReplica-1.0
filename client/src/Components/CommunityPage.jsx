@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { homeStyle } from './styling/homeStyle'
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReddit } from '@fortawesome/free-brands-svg-icons';
-import './Home.css'
+import './Home.css';
 
 function CommunityPage({ subreddit, community }) {
     const classes = homeStyle();
 
     return (
-        <div clsssName='community-cards '>
+        <div className='community-cards '>
 
-            {subreddit.length !== 0 ? (<div clsssName='community-cards'>
+            {subreddit.length !== 0 ? (<div className='community-cards'>
 
                 <div style={{
                     backgroundColor: 'white', padding: '15px', width: '36%', display: 'flex', alignItems: 'center', marginRight: '0px', borderRadius: '5px',
                 }}>
 
-                    <Link className="reddit-link" to={`/r/${community}/submit`}
-
-                    >
+                    <Link className="reddit-link" to={{ pathname: `/r/${community}/submit` }}>
                         <div className="reddit-home">
                             <FontAwesomeIcon
                                 className='reddit-logo'
@@ -63,13 +61,12 @@ function CommunityPage({ subreddit, community }) {
                                         <div className="subreddit-card"
                                             style={{ width: '400px' }}
                                             key={posts.subreddit_posts[0].subreddit_posts_id} >
-                                            <div className='home-card-container'
-                                                style={{ width: '-webkit-fill-available' }}>
+                                            <div className='home-card-container'>
                                                 <div className='card-words'>
 
 
 
-                                                    <Link to={`/r/${posts.subreddit_name}`}>
+                                                    <Link to={{ pathname: `/r/${posts.subreddit_name}` }}>
                                                         <span>r/{posts.subreddit_name} </span>
                                                     </Link>
                                                     <span>posted by

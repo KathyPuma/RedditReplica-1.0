@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import CommunityPage from './CommunityPage'
+import CommunityPage from './CommunityPage';
+import CommunityErrorPage from './Error/CommunityErrorPage';
 import axios from 'axios';
 
 
 
 function Community(props) {
     const [subreddit, setSubreddit] = useState([]);
+    const [communityName, setCommunityName] = useState("")
 
     useEffect(() => {
         const handleAllSubReddits = async () => {
-            const allSubreddits = await axios.get(`/api/subreddit/name/${props.match.params.community}`)
-            setSubreddit(allSubreddits.data.payload)
+            try {
+                const allSubreddits = await axios.get(`/api/subreddit/name/${props.match.params.community}`)
+                let subredditPayload = allSubreddits.data.payload
+                setSubreddit(subredditPayload)
+                setCommunityName(props.match.params.community)
+            } catch (err) {
+                console.log("ERROR", err)
+       
+            }
         }
         handleAllSubReddits()
     }, [])
@@ -19,10 +28,20 @@ function Community(props) {
     return (
         <div className="community-stage" >
 
-            <CommunityPage
-                subreddit={subreddit}
-                community={props.match.params.community}
-            />
+
+            {communityName !== null ? (<div>
+                <div className='community-banner'>
+                    <p>{communityName}</p>
+
+                </div>
+
+                <CommunityPage
+                    subreddit={subreddit}
+                    community={communityName}
+                /></div>) : (<div>
+                    <CommunityErrorPage />
+                </div>)}
+
 
         </div >
     )

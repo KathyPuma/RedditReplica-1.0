@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -21,6 +22,9 @@ export default function PostNavbar(props) {
     const navBarStylesTheme = navBarStyles();
     const tabStylesTheme = tabStyles()
     const [value, setValue] = React.useState(0);
+    const [subredditId, setSubredditId] = useState(null)
+
+
     const linkIcon = <FontAwesomeIcon icon={faLink} />
     const pollIcon = <FontAwesomeIcon icon={faPollH} />
     const videoIcon = <FontAwesomeIcon icon={faImage} />
@@ -28,6 +32,22 @@ export default function PostNavbar(props) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    useEffect(() => {
+        const getSubredditId = async () => {
+            try {
+                const allSubreddits = await axios.get(`/api/subreddit/subredditName/${props.location.pathname.split('/')[2]}`)
+                let subredditId = allSubreddits.data.payload.subreddit_id
+                setSubredditId(subredditId)
+            } catch (err) {
+                console.log("ERROR", err)
+
+            }
+
+        }
+        getSubredditId()
+    }, [])
+
 
     return (
         <div className={navBarStylesTheme.root}>
@@ -70,7 +90,7 @@ export default function PostNavbar(props) {
             </AppBar>
             <TabPanel value={value} index={0}>
                 <PostForm
-                    commuityId={props.location.state.commuityId}
+                    subredditId={subredditId}
                 />
             </TabPanel>
             <TabPanel value={value} index={1}>

@@ -1,6 +1,6 @@
 .community-form-stage{
     display:flex;
-    min-height: -webkit-fill-available;
+    min-height: fit-content;
 }
 
 .community-form{
@@ -101,5 +101,13 @@
     line-height: 21px;
     font-weight: 400;
     display: flex;
+    text-align: justify;
+    
+}
+
+.card-body, .card-title{
+    display: flex;
+    inline-size: -webkit-fill-available;
+    margin: 0px;
     text-align: justify;
 }

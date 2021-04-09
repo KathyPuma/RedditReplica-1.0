@@ -6,25 +6,23 @@ import store from '../../redux/store/store';
 import './PostForm.css';
 
 
-function PostForm({ commuityId }) {
+function PostForm({ subredditId }) {
     const state = store.getState();
     const [createPost, setCreatePost] = useFormFields({
-        commuityId: commuityId,
+        subredditId: subredditId,
         poster_id: state.user.user.user_id,
         title: '',
         body: '',
         photo_url: null,
     });
 
-
     const createNewPost = async () => {
         try {
-            await axios.post(`/api/comments/addPost`, { subreddit_id: commuityId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
+            await axios.post(`/api/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
         } catch (err) {
             console.log("ERROR", err)
         }
     }
-
 
 
     return (
