@@ -1,9 +1,8 @@
 import React from 'react';
-import { CssTextField, useStyles } from '../styling/InputStyling';
+import FormInput from '../FormInput'
 import Divider from '@material-ui/core/Divider';
 
 function SignupStep2({ setNewUser, newUser }) {
-    const classes = useStyles();
     return (
         <div className='signupStep2Page'>
             <h1 className='step2-title'>Choose your username</h1>
@@ -13,28 +12,23 @@ function SignupStep2({ setNewUser, newUser }) {
 
             <div className='singup-button'>
 
-                <CssTextField
-                    className={classes.margin}
-                    label="Username"
-                    variant="outlined"
-                    id="username"
-                    name='username'
-                    value={newUser.username}
-                    onChange={setNewUser}
+                <FormInput
+                    inputLabel="Username"
+                    inputName="username"
+                    inputValue={newUser.username}
+                    updateInput={setNewUser}
                     style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                 />
 
-                <CssTextField
-                    className={classes.margin}
-                    label="Password"
-                    variant="outlined"
-                    id="password"
-                    name='password'
-                    type="password"
-                    value={newUser.password}
-                    onChange={setNewUser}
+                <FormInput
+                    inputLabel="Password"
+                    inputName="password"
+                    inputValue={newUser.password}
+                    updateInput={setNewUser}
                     style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                 />
+
+
             </div>
 
             <Divider />

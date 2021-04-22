@@ -1,9 +1,8 @@
 import React from 'react'
-import { CssTextField, useStyles } from '../styling/InputStyling'
 import { useFormFields } from '../Helpers/HelperFunctions'
+import FormInput from '../FormInput'
 
 function Login({ loginUser, SetLoginAction }) {
-    const classes = useStyles();
     const [loggedInUser, setLoggedInUser] = useFormFields({
         username: "",
         password: "",
@@ -21,27 +20,20 @@ function Login({ loginUser, SetLoginAction }) {
                     <div className='login'>LOGIN</div>
 
 
-                    <CssTextField
-                        className={classes.margin}
-                        label="Username"
-                        variant="outlined"
-                        id="username"
-                        name='username'
-                        value={loggedInUser.username}
-                        onChange={setLoggedInUser}
+                    <FormInput
+                        inputLabel="Username"
+                        inputName="username"
+                        inputValue={loggedInUser.username}
+                        updateInput={setLoggedInUser}
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />
 
-                    <CssTextField
-                        className={classes.margin}
-                        label="Password"
-                        variant="outlined"
-                        id="password"
-                        type="password"
-                        value={loggedInUser.password}
-                        onChange={setLoggedInUser}
 
-
+                    <FormInput
+                        inputLabel="Password"
+                        inputName="password"
+                        inputValue={loggedInUser.password}
+                        updateInput={setLoggedInUser}
                         style={{ margin: '10px 0px 10px 0px', width: '95%', }}
                     />
 
