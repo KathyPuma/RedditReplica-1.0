@@ -2,7 +2,8 @@ import React from "react"
 import { useFormFields } from "../Helpers/HelperFunctions"
 import FormInput from "../FormInput"
 
-function Login({ loginUser, SetLoginAction }) {
+function Login({ loginUser, SetLoginAction, message }) {
+   
     const [loggedInUser, setLoggedInUser] = useFormFields({
         username: "",
         password: "",
@@ -40,6 +41,7 @@ function Login({ loginUser, SetLoginAction }) {
                         style={{ margin: "10px 0px 10px 0px", width: "95%", }}
                     />
 
+<span>{message}</span>
                     <div >
                         <button className="login-button-form"
                             onClick={handleLogin}
