@@ -1,4 +1,5 @@
-import React from 'react';
+import React , {useState} from 'react';
+import { useHistory } from 'react-router-dom'
 import Divider from '@material-ui/core/Divider';
 import { useFormFields } from '../Helpers/HelperFunctions';
 import axios from 'axios';
@@ -6,8 +7,9 @@ import store from '../../redux/store/store';
 import './PostForm.css';
 
 
-function PostForm({ subredditId }) {
+function PostForm({ subredditId }, props ) {
     const state = store.getState();
+    const history = useHistory()
     const [createPost, setCreatePost] = useFormFields({
         subredditId: subredditId,
         poster_id: state.user.user.user_id,
@@ -19,8 +21,9 @@ function PostForm({ subredditId }) {
     const createNewPost = async () => {
         try {
             await axios.post(`/api/comments/addPost`, { subreddit_id: subredditId, poster_id: createPost.poster_id, title: createPost.title, body: createPost.body, photo_url: createPost.photo_url })
+            history.push('/')
         } catch (err) {
-            console.log("ERROR", err)
+            console.log("ERROR", err.response)
         }
     }
 

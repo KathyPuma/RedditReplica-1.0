@@ -24,7 +24,7 @@ function SignupStep2({ setNewUser, newUser }) {
                 <FormInput
                     inputLabel="Password"
                     inputName="password"
-                    inputType="email"
+                    inputType="password"
                     inputValue={newUser.password}
                     updateInput={setNewUser}
                     style={{ margin: "10px 0px 10px 0px", width: "95%", }}

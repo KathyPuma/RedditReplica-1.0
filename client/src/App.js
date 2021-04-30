@@ -1,25 +1,27 @@
 import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
-import Home from './Components/Home';
-import Navbar from './Components/Navbar';
-import Community from './Components/Community';
-import ProfileLanding from './Components/Profile/ProfileLanding';
-import Comments from './Components/Comments';
-import Posts from './Components/Profile/Posts';
-import Downvoted from './Components/Profile/Downvoted';
-import Upvoted from './Components/Profile/Upvoted';
-import PostNavbar from './Components/PostForms/PostNavbar';
-import { connect } from 'react-redux';
-import { logoutUser } from './redux/actions/userActions';
+import { Switch, Route } from "react-router-dom";
+import Home from "./Components/Home";
+import Navbar from "./Components/Navbar";
+import Community from "./Components/Community";
+import ProfileLanding from "./Components/Profile/ProfileLanding";
+import Comments from "./Components/Comments";
+import Posts from "./Components/Profile/Posts";
+import Downvoted from "./Components/Profile/Downvoted";
+import Upvoted from "./Components/Profile/Upvoted";
+import PostNavbar from "./Components/PostForms/PostNavbar";
+import { connect } from "react-redux";
+import { logoutUser } from "./redux/actions/userActions";
 import "./App.css";
 
 function App({ user }) {
   return (
     <div className="App">
+
       <Navbar
         logoutUser={logoutUser}
         user={user.user}
       />
+
       <div className="app-route">
         <Switch>
           <Route path="/r/:community/submit/" component={PostNavbar} />
@@ -38,11 +40,10 @@ function App({ user }) {
 }
 
 const mapStateToProps = (state) => {
-
   return {
     user: state.user,
   };
-}
+};
 
 
 const mapDispatchToProps = dispatch => {
@@ -50,9 +51,9 @@ const mapDispatchToProps = dispatch => {
     logoutUser: () => dispatch(logoutUser()),
 
   }
-}
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App);
