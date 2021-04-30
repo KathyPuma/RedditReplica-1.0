@@ -2,7 +2,7 @@ const db = require('../database/db')
 
 const getAllPostBySubbreddit = async () => {
     const getAllPostBySubReddit = `
-    SELECT  
+    SELECT  subreddit_posts.*,
     subreddit.*, users.username,
     subreddit_posts.subreddit_posts_id, subreddit_posts.title , subreddit_posts.body  , subreddit_posts.photo_url ,
     subreddit_posts.time_post, sum(votes_posts.votes) AS vote_total

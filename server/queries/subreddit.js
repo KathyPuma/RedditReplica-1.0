@@ -64,14 +64,11 @@ const checkIfSubbredditExist = async (subreddit_name) => {
 
 
 const searchSubreddit = async (subreddit_name) => {
-    console.log('subreddit_name,', subreddit_name)
     const subreddit = `
     SELECT * FROM subreddit 
     WHERE subreddit_name ILIKE $/subreddit_name/`
     return await db.any(subreddit, { subreddit_name })
 }
-
-
 
 
 

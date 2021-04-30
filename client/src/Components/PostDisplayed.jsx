@@ -11,7 +11,7 @@ function PostDisplayed({ homeStyleTheme, subredditsPosts, PostButton, currPage, 
 
     const handleVote = async (postId, vote) => {
         if (userId) {
-            const allSubreddits = await axios.post(`/api//votes/updateVote`, { subreddit_posts_id: postId, voter_id: userId, votes: vote })
+            const allSubreddits = await axios.post(`/api/votes/updateVote`, { subreddit_posts_id: postId, voter_id: userId, votes: vote })
             handleAllSubRedditPosts()
         }
     }
@@ -32,6 +32,12 @@ function PostDisplayed({ homeStyleTheme, subredditsPosts, PostButton, currPage, 
                 {subredditsPosts.map(posts => {
                     return (
                         <div className="subreddit-card" key={posts.subreddit_posts_id}>
+                            <p>{posts.subreddit_posts_id }</p>
+                            <p>{posts.postId }</p>
+                            <p>{posts.voter_id }</p>
+                     
+
+
                             <div className="home-card-container">
                                 <div className="card-words">
 
@@ -48,8 +54,8 @@ function PostDisplayed({ homeStyleTheme, subredditsPosts, PostButton, currPage, 
                                         </div>
                                     </span>
 
-                                    <span className="card-title">{posts.title}</span>
-                                    <h2 className="card-body">{posts.body}</h2>
+                                    <h3 className="card-title">{posts.title}</h3>
+                                    <p className="card-body">{posts.body}</p>
                                     <img className="subreddit-card-img" src={posts.photo_url} />
                                 </div>
 
