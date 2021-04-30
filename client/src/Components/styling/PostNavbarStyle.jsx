@@ -12,7 +12,6 @@ export const tabStyles = makeStyles({
 export const navBarStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        width: '100%',
         backgroundColor: theme.palette.background.paper,
         display: 'flex',
         flexDirection: 'column',

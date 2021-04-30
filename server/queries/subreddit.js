@@ -1,5 +1,10 @@
 const db = require('../database/db')
 
+const getAllSubreddits = async () => {
+    const users = await db.any("SELECT * FROM subreddit")
+    return users;
+}
+
 const getAllPostBySubbreddit = async (id) => {
 
     const comments =
@@ -10,6 +15,15 @@ const getAllPostBySubbreddit = async (id) => {
     `
     return await db.any(comments)
 }
+
+
+const getSubbredditOnlyByName = async (subreddit_name) => {
+    const subredditByName =
+        `SELECT  * FROM subreddit WHERE subreddit_name = $/subreddit_name/
+    `
+    return await db.any(subredditByName, {subreddit_name})
+}
+
 
 
 const getSubbredditById = async (subreddit_id) => {
@@ -49,11 +63,22 @@ const checkIfSubbredditExist = async (subreddit_name) => {
 }
 
 
+const searchSubreddit = async (subreddit_name) => {
+    console.log('subreddit_name,', subreddit_name)
+    const subreddit = `
+    SELECT * FROM subreddit 
+    WHERE subreddit_name ILIKE $/subreddit_name/`
+    return await db.any(subreddit, { subreddit_name })
+}
+
+
+
+
 
 const addNewSubreddit = async (subredditObj) => {
     const newSubredditQuery = `
-		INSERT INTO subreddit(subreddit_name, subreddit_description, subreddit_admin)
-		VALUES($/subreddit_name/, $/subreddit_description/ , $/subreddit_admin/ )
+		INSERT INTO subreddit(subreddit_name, subreddit_description, subreddit_admin, subreddit_banner,subreddit_logo )
+		VALUES($/subreddit_name/, $/subreddit_description/ , $/subreddit_admin/, $/subreddit_banner/ ,$/subreddit_logo/ )
         RETURNING *
         `
     return await db.oneOrNone(newSubredditQuery, subredditObj)
@@ -61,9 +86,12 @@ const addNewSubreddit = async (subredditObj) => {
 
 
 module.exports = {
-    // getAllPostBySubbreddit,
+    getSubbredditOnlyByName,
+    getAllSubreddits,
+    getAllPostBySubbreddit,
     getSubbredditById,
     getSubbredditByName,
     addNewSubreddit,
-    checkIfSubbredditExist
+    checkIfSubbredditExist,
+    searchSubreddit,
 };

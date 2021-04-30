@@ -6,8 +6,9 @@ import { registerUser, loginUser } from '../../redux/actions/userActions';
 import RedditArtLogin from '../../redditImages/reddit_loginBanner.png';
 import './AuthCSS/AuthLanding.css';
 
-function AuthLanding({ button, registerUser, loginUser }) {
+function AuthLanding({ button, registerUser, loginUser, message }) {
     const [loginAction, SetLoginAction] = useState(button)
+
 
     return (
         <div className='authLanding-page'>
@@ -18,6 +19,7 @@ function AuthLanding({ button, registerUser, loginUser }) {
                     <Login
                         loginUser={loginUser}
                         SetLoginAction={SetLoginAction}
+                        message={message}
                     />
 
                 </div>
@@ -26,6 +28,7 @@ function AuthLanding({ button, registerUser, loginUser }) {
                         <Signup
                             registerUser={registerUser}
                             SetLoginAction={SetLoginAction}
+                            message={message}
                         />
                     </div>
                 )}
@@ -37,7 +40,8 @@ function AuthLanding({ button, registerUser, loginUser }) {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        message: state.user.message
     }
 }
 

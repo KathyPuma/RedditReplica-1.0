@@ -54,7 +54,7 @@ span {
     margin-left: 3px;
 }
 
-.home-banner{
+.home-banner, .community-img{
     width: 100%;
 }
 
@@ -81,4 +81,8 @@ span {
 
 .card-create-button{
     padding: 12px
+}
+
+.community-img{
+    height: 65px
 }

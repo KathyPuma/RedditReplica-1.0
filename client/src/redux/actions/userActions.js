@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { authErrorLoginHandler } from './authErrorHandler'
 import {
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
@@ -25,6 +26,7 @@ export const registerUser = (user) => {
                 })
             })
             .catch(error => {
+
                 dispatch({
                     type: REGISTER_FAIL,
                     payload: error.response.data.message
@@ -49,9 +51,10 @@ export const loginUser = (user) => {
                 })
             })
             .catch(error => {
+                let errorResponse = authErrorLoginHandler(error, user.username, user.password)
                 dispatch({
                     type: LOGIN_FAIL,
-                    payload: error.response.data.message
+                    payload: errorResponse
                 })
             })
     }

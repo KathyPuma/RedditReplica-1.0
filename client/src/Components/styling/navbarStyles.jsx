@@ -1,7 +1,4 @@
-import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
-import customTheme from './customTheme';
-import Badge from '@material-ui/core/Badge';
-
+import {  makeStyles } from '@material-ui/core/styles';
 
 
 export const navbarStyles = makeStyles((theme) => ({
@@ -70,12 +67,12 @@ export const navbarStyles = makeStyles((theme) => ({
       boder: '1px solid blue',
     },
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
+      // marginLeft: theme.spacing(1),
       width: '100%',
-      marginLeft: '8px',
+      // marginLeft: '8px',
       background: ' rgb(224, 224, 224)',
       display: 'flex',
-      marginLeft: '15%',
+      // marginLeft: '15%',
       marginLeft: '10%',
       marginRight:' 10%',
     }

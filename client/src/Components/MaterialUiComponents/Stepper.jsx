@@ -83,7 +83,10 @@ export default function DotsMobileStepper({ setNewUser, newUser, handleRegister,
 
                             <div className='stepper-loginButton'
                             >
-                                Already a redditor?   <button onClick={() => SetLoginAction("Login")}> Log in</button>
+                                Already a redditor?  
+                                
+                                <span className="su-link" onClick={() => SetLoginAction("Login")}> LOG IN</span>
+                                 
                             </div>
                         </div>) :
                         (<div>
