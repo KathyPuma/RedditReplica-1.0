@@ -4,7 +4,7 @@ CREATE DATABASE reddit_replica;
 \c reddit_replica
 
 
--- DROP TABLE IF  users CASCADE; 
+DROP TABLE IF  users CASCADE; 
 CREATE TABLE users(
    user_id SERIAL PRIMARY KEY,
    username VARCHAR UNIQUE NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE users(
    avatar_url TEXT DEFAULT ''
 );
 
--- DROP TABLE IF exists subreddit CASCADE;
+DROP TABLE IF exists subreddit CASCADE;
 CREATE TABLE subreddit (
     subreddit_id SERIAL PRIMARY KEY,
     subreddit_name VARCHAR UNIQUE NOT NULL, 
@@ -23,7 +23,7 @@ CREATE TABLE subreddit (
     subreddit_logo VARCHAR
 );
 
--- DROP TABLE IF exists subreddit_posts CASCADE;
+DROP TABLE IF exists subreddit_posts CASCADE;
 CREATE TABLE subreddit_posts(
     subreddit_posts_id SERIAL PRIMARY KEY,
     subreddit_id  INT REFERENCES subreddit(subreddit_id),
@@ -34,7 +34,7 @@ CREATE TABLE subreddit_posts(
     time_post text DEFAULT NOW()
 );
 
--- DROP TABLE IF exists comments CASCADE;
+DROP TABLE IF exists comments CASCADE;
 CREATE TABLE comments(
    comment_id SERIAL PRIMARY KEY,
     subreddit_posts INT REFERENCES subreddit_posts(subreddit_posts_id),
@@ -43,7 +43,7 @@ CREATE TABLE comments(
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- DROP TABLE IF exists comment_replies CASCADE;
+DROP TABLE IF exists comment_replies CASCADE;
 CREATE TABLE comment_replies(
    comment_replies_id SERIAL PRIMARY KEY,
    comment_id INT REFERENCES comments(comment_id),
@@ -52,14 +52,14 @@ CREATE TABLE comment_replies(
    comment_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- DROP TABLE IF exists comumunity CASCADE;
+DROP TABLE IF exists comumunity CASCADE;
 CREATE TABLE comumunity (  --subreddit_users 
     comumunity_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     subreddit_id  INT REFERENCES subreddit(subreddit_id)
 );
 
--- DROP TABLE IF exists votes_posts CASCADE;
+DROP TABLE IF exists votes_posts CASCADE;
 CREATE TABLE votes_posts(
     votes_posts_id SERIAL PRIMARY KEY,
     subreddit_posts_id INT REFERENCES subreddit_posts(subreddit_posts_id),
@@ -81,11 +81,11 @@ VALUES
 INSERT INTO subreddit
     (subreddit_name, subreddit_description, subreddit_admin,subreddit_banner, subreddit_logo)
 VALUES
-('wholesomememes', 'Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.', 1, 'http://localhost:3001/images/subredditBanners/WholesomeMemesBanner.jpeg', 'http://localhost:3001/images/subredditLogos/WholesomeMemesLogo.png'),
-('Movies', 'News & Discussion about Major Motion Pictures',1, 'http://localhost:3001/images/subredditBanners/MovieseBannner.png', 'http://localhost:3001/images/subredditLogos/MoviesLogo.jpeg'),
-('explainlikeimfive', 'Explain Like I''m Five is the best forum and archive on the internet for layperson-friendly explanations. Don''t Panic!',2, 'http://localhost:3001/images/subredditBanners/ExplainLikeImFiveBannner.png' , 'http://localhost:3001/images/subredditLogos/ELI5Logo.png'),
-('apple', 'An unofficial community to discuss Apple devices and software, including news, rumors, opinions and analysis pertaining to the company located at One Apple Park Way.', 1, 'http://localhost:3001/images/subredditBanners/AppleBanner.png' , 'http://localhost:3001/images/subredditLogos/AppleLogo.jpeg'),
-('AskReddit', 'r/AskReddit is the place to ask and answer thought-provoking questions.',1 , 'http://localhost:3001/images/subredditBanners/AskRedditBanner.png' , 'http://localhost:3001/images/subredditLogos/AskRedditLogo.png');
+('wholesomememes', 'Welcome to the wholesome side of the internet! This community is for those searching for a way to capture virtue on the internet.', 1, '/images/subredditBanners/WholesomeMemesBanner.jpeg', '/images/subredditLogos/WholesomeMemesLogo.png'),
+('Movies', 'News & Discussion about Major Motion Pictures',1, '/images/subredditBanners/MovieseBannner.png', '/images/subredditLogos/MoviesLogo.jpeg'),
+('explainlikeimfive', 'Explain Like I''m Five is the best forum and archive on the internet for layperson-friendly explanations. Don''t Panic!',2, '/images/subredditBanners/ExplainLikeImFiveBannner.png' , '/images/subredditLogos/ELI5Logo.png'),
+('apple', 'An unofficial community to discuss Apple devices and software, including news, rumors, opinions and analysis pertaining to the company located at One Apple Park Way.', 1, '/images/subredditBanners/AppleBanner.png' , '/images/subredditLogos/AppleLogo.jpeg'),
+('AskReddit', 'r/AskReddit is the place to ask and answer thought-provoking questions.',1 , '/images/subredditBanners/AskRedditBanner.png' , '/images/subredditLogos/AskRedditLogo.png');
 
 
 INSERT INTO comumunity

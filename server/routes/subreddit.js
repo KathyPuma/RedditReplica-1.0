@@ -149,8 +149,8 @@ router.get('/search/subredditName/:subreddit_name', async (req, res, next) => {
 router.post('/add', async (req, res, next) => {
 
   const { subreddit_name, subreddit_description, subreddit_admin } = req.body
-  let subreddit_banner = 'http://localhost:3001/images/subredditBanners/DefaultBanner.png'
-  let subreddit_logo = 'http://localhost:3001/images/subredditLogos/WholesomeMemesLogo.png'
+  let subreddit_banner = '/images/subredditBanners/DefaultBanner.png'
+  let subreddit_logo = '/images/subredditLogos/WholesomeMemesLogo.png'
   try {
     let newSubreddit = await subredditQueries.addNewSubreddit({ subreddit_name, subreddit_description, subreddit_admin, subreddit_banner, subreddit_logo })
 
