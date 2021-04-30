@@ -1,5 +1,4 @@
 export const authErrorLoginHandler = (error, username, password) => {
-   console.log('error--', error.response)
    
     if (!username && !password) {
         return ('Username and Password fields are empty')
