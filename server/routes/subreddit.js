@@ -4,6 +4,46 @@ const subredditPostsQueries = require('../queries/subredditPosts')
 const subredditQueries = require('../queries/subreddit')
 
 
+router.get('/getAllSubreddits', async (req, res, next) => {
+  try {
+    let posts = await subredditQueries.getAllSubreddits()
+    res.json({
+      payload: posts,
+      message: "Retrieved all posts from subreddit",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed retrieving all posts from subreddit",
+      error: true
+    })
+  }
+
+});
+
+router.get('/subredditLogo/:subreddit_name', async (req, res, next) => {
+  const { subreddit_name } = req.params
+
+  try {
+    let posts = await subredditQueries.getSubbredditOnlyByName(subreddit_name)
+    res.json({
+      payload: posts,
+      message: "Retrieved all posts from subreddit",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed retrieving all posts from subreddit",
+      error: true
+    })
+  }
+
+});
+
+
+
 router.get('/', async (req, res, next) => {
   try {
     let posts = await subredditPostsQueries.getAllPostBySubbreddit()
@@ -45,7 +85,7 @@ router.get('/:subreddit_id', async (req, res, next) => {
 router.get('/name/:subreddit_name', async (req, res, next) => {
   const { subreddit_name } = req.params
   try {
-    let posts = await subredditQueries.getSubbredditByName(subreddit_name)
+    let posts = await subredditPostsQueries.getSubbredditByName(subreddit_name)
     res.json({
       payload: posts,
       message: "Retrieved all posts by  subreddit name",
@@ -63,9 +103,30 @@ router.get('/name/:subreddit_name', async (req, res, next) => {
 
 
 router.get('/subredditName/:subreddit_name', async (req, res, next) => {
-  const { subreddit_name } = req.params  
+  const { subreddit_name } = req.params
   try {
     let posts = await subredditQueries.checkIfSubbredditExist(subreddit_name)
+    res.json({
+      payload: posts,
+      message: "Retrieved subreddit information by subreddit name",
+      error: false
+    })
+  } catch (err) {
+    res.status(500).json({
+      payload: null,
+      message: "Failed retrieving subreddit information by subreddit name",
+      error: true
+    })
+  }
+});
+
+
+router.get('/search/subredditName/:subreddit_name', async (req, res, next) => {
+  const { subreddit_name } = req.params
+
+  try {
+    let posts = await subredditQueries.searchSubreddit(subreddit_name)
+    
     res.json({
       payload: posts,
       message: "Retrieved subreddit information by subreddit name",
@@ -84,13 +145,15 @@ router.get('/subredditName/:subreddit_name', async (req, res, next) => {
 
 
 
-router.post('/add', async (req, res, next) => {
-  
-  const { subreddit_name, subreddit_description, subreddit_admin } = req.body
 
+router.post('/add', async (req, res, next) => {
+
+  const { subreddit_name, subreddit_description, subreddit_admin } = req.body
+  let subreddit_banner = 'http://localhost:3001/images/subredditBanners/DefaultBanner.png'
+  let subreddit_logo = 'http://localhost:3001/images/subredditLogos/WholesomeMemesLogo.png'
   try {
-    let newSubreddit = await subredditQueries.addNewSubreddit({ subreddit_name, subreddit_description, subreddit_admin })
-  
+    let newSubreddit = await subredditQueries.addNewSubreddit({ subreddit_name, subreddit_description, subreddit_admin, subreddit_banner, subreddit_logo })
+
     res.json({
       payload: newSubreddit,
       message: "Successfully created a new community",
@@ -110,12 +173,12 @@ router.post('/add', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
-  
+
   const { subreddit_name, subreddit_description, subreddit_admin } = req.body
 
   try {
     let newSubreddit = await subredditQueries.addNewSubreddit({ subreddit_name, subreddit_description, subreddit_admin })
-  
+
     res.json({
       payload: newSubreddit,
       message: "Successfully created a new community",
