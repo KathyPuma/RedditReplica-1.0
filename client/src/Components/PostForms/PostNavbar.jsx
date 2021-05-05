@@ -94,15 +94,15 @@ export default function PostNavbar(props) {
                 />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+             Coming soon.. 
 
 
       </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+            Coming soon.. 
       </TabPanel>
             <TabPanel value={value} index={3}>
-                Item Four
+            Coming soon.. 
 
       </TabPanel>
 

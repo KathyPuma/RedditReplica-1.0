@@ -32,12 +32,7 @@ function PostDisplayed({ homeStyleTheme, subredditsPosts, PostButton, currPage, 
                 {subredditsPosts.map(posts => {
                     return (
                         <div className="subreddit-card" key={posts.subreddit_posts_id}>
-                            <p>{posts.subreddit_posts_id }</p>
-                            <p>{posts.postId }</p>
-                            <p>{posts.voter_id }</p>
-                     
-
-
+                    
                             <div className="home-card-container">
                                 <div className="card-words">
 
