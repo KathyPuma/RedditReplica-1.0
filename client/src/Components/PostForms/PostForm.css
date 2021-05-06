@@ -21,3 +21,41 @@
     align-self: flex-end;
 
 }
+.postForm-title{
+    padding: 8px 68px 8px 16px;
+    border: 1px solid rgb(237, 239, 241);
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.postForm-body{
+    margin-top: 25px;
+    height: 25%;
+    background-color: #ffffff;
+    color: #1c1c1c;
+    font-family: Noto Sans,Arial,sans-serif;
+    min-height: 122px;
+    overflow: hidden;
+    padding: 8px 16px;
+    resize: vertical;
+    border: 1px solid rgb(237, 239, 241);
+    border-radius: 4px;
+
+
+}
+
+.postForm-title:active ,.postForm-title:focus{
+    border: 1px solid black;
+}
+
+
+
+.input[type=text] {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  margin-bottom: 1em;
+  display: block;
+  width: 100%
+}
