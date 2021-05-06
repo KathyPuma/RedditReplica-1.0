@@ -8,10 +8,12 @@ import Comments from "./Components/Comments";
 import Posts from "./Components/Profile/Posts";
 import Downvoted from "./Components/Profile/Downvoted";
 import Upvoted from "./Components/Profile/Upvoted";
-import PostNavbar from "./Components/PostForms/PostNavbar";
+import Overview from "./Components/Profile/Overview";
+import PostFormLanding from "./Components/PostForms/PostFormLanding";
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/actions/userActions";
 import "./App.css";
+
 
 function App({ user }) {
   return (
@@ -24,10 +26,11 @@ function App({ user }) {
 
       <div className="app-route">
         <Switch>
-          <Route path="/r/:community/submit/" component={PostNavbar} />
+          <Route path="/r/:community/submit/" component={PostFormLanding} />
           <Route path="/r/:community/" component={Community} />
-          <Route path="/user/:username/" component={ProfileLanding} />
+          <Route exact path="/user/:username/" component={ProfileLanding} />
           <Route path="/user/:username/comments/" component={Comments} />
+          <Route path="/user/:username/overview/" component={Overview} />
           <Route path="/user/:username/posts/" component={Posts} />
           <Route path="/user/:username/downvoted/" component={Downvoted} />
           <Route path="/user/:username/upvoted/" component={Upvoted} />

@@ -1,6 +1,5 @@
 import React , {useState} from 'react';
 import { useHistory } from 'react-router-dom'
-import Divider from '@material-ui/core/Divider';
 import { useFormFields } from '../Helpers/HelperFunctions';
 import axios from 'axios';
 import store from '../../redux/store/store';
@@ -30,13 +29,10 @@ function PostForm({ subredditId }, props ) {
 
     return (
         <div className='post-form-stage' style={{ paddingTop: '15px' }} >
-            <Divider style={{ backgroundColor: 'white', marginTop: '15px', marginBottom: '15px' }} />
             <div style={{
                 backgroundColor: 'white',
                 display: 'flex',
                 flexDirection: 'column',
-                width: '50%',
-                padding: '10%',
             }}>
                 <input
 
@@ -44,23 +40,22 @@ function PostForm({ subredditId }, props ) {
                     id="title"
                     name='title'
                     type='text'
-                    className="title-form"
+                    className="postForm-title"
                     value={createPost.title}
                     onChange={setCreatePost}
                     placeholder='Title'
-                    style={{ marginTop: '25px', }}
+       
                 />
 
                 <input
                     label="body"
                     id="body"
                     name='body'
-                    className='input-form'
+                    className='postForm-body'
                     type='text'
                     placeholder='Text (optional)'
                     value={createPost.body}
-                    onChange={setCreatePost}
-                    style={{ marginTop: '25px', height: '25%' }}
+                    onChange={setCreatePost}               
                 />
 
                 <button
