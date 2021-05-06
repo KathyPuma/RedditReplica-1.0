@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import { HashRouter, Route, Link, useLocation, Redirect } from "react-router-dom";
 import Overview from "./Overview";
 import Posts from "./Posts";
@@ -26,7 +25,7 @@ function TabPanel(props) {
         >
             {value === active && (
                 <Box p={5}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -41,7 +40,7 @@ function a11yProps(index) {
 }
 
 
-function MyTabs({ username }) {
+function MyTabs({ username }, props) {
     const location = useLocation();
     let currentTab = location.pathname;
 
@@ -62,9 +61,9 @@ function MyTabs({ username }) {
                         label="OVERVIEW"
                         value="/overview"
                         to="/overview"
-                        style = {{"display": "flex"}}
-                        disableFocusRipple="true"
-                        disableRipple="true"
+                        style={{ "display": "flex" }}
+                        disableFocusRipple={true}
+                        disableRipple={true}
                         component={Link}
                         {...a11yProps(0)}
                     />
@@ -72,8 +71,8 @@ function MyTabs({ username }) {
                         label="POSTS"
                         value="/posts"
                         to="/posts"
-                        disableFocusRipple="true"
-                        disableRipple="true"
+                        disableFocusRipple={true}
+                        disableRipple={true}
 
                         component={Link}
                         {...a11yProps(1)}
@@ -82,8 +81,8 @@ function MyTabs({ username }) {
                         label="COMMENTS"
                         value="/comments"
                         to="/comments"
-                        disableFocusRipple="true"
-                        disableRipple="true"
+                        disableFocusRipple={true}
+                        disableRipple={true}
                         component={Link}
                         {...a11yProps(2)}
                     />
@@ -91,8 +90,8 @@ function MyTabs({ username }) {
                         label="UPVOTED"
                         value="/upvoted"
                         to="/upvoted"
-                        disableFocusRipple="true"
-                        disableRipple="true"
+                        disableFocusRipple={true}
+                        disableRipple={true}
                         component={Link}
                         {...a11yProps(3)}
                     />
@@ -101,8 +100,8 @@ function MyTabs({ username }) {
                         label="DOWNVOTED"
                         value="/downvoted"
                         to="/downvoted"
-                        disableFocusRipple="true"
-                        disableRipple="true"
+                        disableFocusRipple={true}
+                        disableRipple={true}
                         component={Link}
                         {...a11yProps(4)}
                     />
@@ -138,14 +137,15 @@ function MyTabs({ username }) {
     );
 }
 
-export default function TabsRouter() {
+export default function PorfileNavbar({ username }) {
     return (
         <div>
             <HashRouter>
                 <Route exact path="/">
                     <Redirect to="/overview" />
                 </Route>
-                <MyTabs />
+                <MyTabs
+                    username={username} />
             </HashRouter>
         </div>
     );

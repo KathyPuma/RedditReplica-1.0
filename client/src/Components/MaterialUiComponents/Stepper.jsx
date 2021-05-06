@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function DotsMobileStepper({ setNewUser, newUser, handleRegister, SetLoginAction }) {
+export default function DotsMobileStepper({ setNewUser, newUser, handleRegister, SetLoginAction, message }) {
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -46,7 +46,8 @@ export default function DotsMobileStepper({ setNewUser, newUser, handleRegister,
                     <div className='step2Form'>
                         <SignupStep2
                             setNewUser={setNewUser}
-                            newUser={newUser} />
+                            newUser={newUser}
+                            message= {message} />
                     </div>
                 </div>)
             }

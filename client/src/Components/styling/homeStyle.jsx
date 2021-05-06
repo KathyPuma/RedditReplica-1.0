@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
       justifyContent: 'center',
     },
     paper: {
-      padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
       flex: '1 0 auto',
@@ -18,6 +17,5 @@ import { makeStyles } from '@material-ui/core/styles';
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      width: '50%',
     },
   }));

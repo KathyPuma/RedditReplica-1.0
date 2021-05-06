@@ -36,7 +36,47 @@ const getSubbredditByName = async (subreddit_name) => {
 }
 
 
+
+
+const getAllPostsByUsername = async(username) => {
+    let checkUserExist =  await checkIfUserExist(username)
+ 
+   
+  if(checkUserExist){
+    const getallPostsByUser = `
+	SELECT *
+    FROM subreddit_posts
+    JOIN users ON users.user_id = subreddit_posts.poster_id
+    JOIN subreddit ON subreddit.subreddit_id = subreddit_posts.subreddit_id
+	WHERE users.username = $/username/;	
+	`;
+    return await await db.any(getallPostsByUser, { username })
+  }else{
+      return null
+  }
+   
+
+}
+
+const checkIfUserExist = async (username) =>{
+
+const checkUser = `
+	SELECT *
+    FROM   users 
+	WHERE users.username = $/username/	
+	`;
+    return await db.oneOrNone(checkUser, { username })
+}
+
+
+
+
+
+
+
+
 module.exports = {
     getAllPostBySubbreddit,
-    getSubbredditByName
+    getSubbredditByName,
+    getAllPostsByUsername
 };
