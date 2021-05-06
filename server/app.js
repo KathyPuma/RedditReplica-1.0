@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const subredditRouter = require('./routes/subreddit')
 const votestRouter = require('./routes/votes')
 const commentsRouter = require('./routes/comments')
-
+const subredditPosts = require('./routes/subredditPosts')
 const app = express();
 
 app.use(logger('dev'));
@@ -36,6 +36,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/subreddit', subredditRouter)
 app.use('/api/votes', votestRouter)
 app.use('/api/comments', commentsRouter)
+app.use('/api/subredditPosts', subredditPosts)
 
 
 app.get("*", (req, res) => {
