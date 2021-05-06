@@ -1,0 +1,21 @@
+.postnavbar-header{
+    padding: 4px;
+    margin: 16px 0;
+    border-bottom: 1px solid #edeff1;
+    display: flex;
+    align-self: start;
+    width: 100%
+    
+}
+
+.postnavbar-header-title{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #1c1c1c;
+    flex: 1;
+    padding: 4px;
+    text-align: start;
+    margin: 0 0 16px 0px;
+}
+

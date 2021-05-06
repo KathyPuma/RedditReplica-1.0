@@ -3,6 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
 export const tabStyles = makeStyles({
+    root: {
+        '&.Mui-disabled': {
+            width: "0%",
+            opacity: "0.5",
+
+        },
+    },
     wrapper: {
         display: "flex",
         flexDirection: "row",
@@ -16,7 +23,14 @@ export const navBarStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         width: 'max-content',
+        '&.Mui-disabled': {
+            width: "0%",
+            opacity: "0.5",
+
+        },
+
     },
+    
     
 
 }));
