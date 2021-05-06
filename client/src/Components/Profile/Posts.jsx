@@ -88,7 +88,8 @@ function Posts({ username }) {
                                 </div>)
 
                         })}</div>) :
-                        (<EmptyProfile />)}
+                        (<EmptyProfile
+                        username = {username} />)}
                 </Paper>
             </Hidden>)
                 : (<ProfileError />)}
